@@ -10,7 +10,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
   body {
-    background-color: #E8E4DF;
+    background-color: #E6E1DA;
     font-family: 'Sarabun', 'Plus Jakarta Sans', sans-serif;
     display: flex;
     justify-content: center;
@@ -24,14 +24,16 @@
     background-color: #FAF7F5;
     min-height: 100vh;
     position: relative;
-    box-shadow: 0 0 40px rgba(0,0,0,0.1);
+    box-shadow: 0 0 40px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
   }
 
-  .theme-lilac { --bg-main: #FAF7F5; --primary: #A267B3; --primary-light: #D8B4E2; --text-main: #3D3543; }
-  .theme-mint { --bg-main: #F4F8F6; --primary: #4EA385; --primary-light: #BCE5D6; --text-main: #2D3D37; }
+  /* Themes */
+  .theme-lilac { --bg-main: #FAF7F5; --primary: #A267B3; --primary-light: #F4EBF7; --border: #F0EAF2; --text-main: #3D3543; --accent: #D87080; }
+  .theme-oat { --bg-main: #FAF6F0; --primary: #D97736; --primary-light: #FBF0E6; --border: #EFE8DE; --text-main: #3C3630; --accent: #C88A35; }
+  .theme-mint { --bg-main: #F4F8F6; --primary: #4EA385; --primary-light: #E6F4F1; --border: #E2EFEA; --text-main: #2D3D37; --accent: #E2795B; }
 
   .screen { display: none; flex-direction: column; padding-bottom: 90px; }
   .screen.active { display: flex; }
@@ -39,67 +41,103 @@
   /* Header */
   .header { padding: 22px 20px 14px 20px; display: flex; justify-content: space-between; align-items: center; }
   .logo-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
-  .theme-lilac .logo-title { background: linear-gradient(135deg, #A267B3, #D87080); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .theme-mint .logo-title { background: linear-gradient(135deg, #4EA385, #E2795B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   
-  .btn-add {
+  .theme-lilac .logo-title { background: linear-gradient(135deg, #A267B3, #D87080); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .theme-oat .logo-title { background: linear-gradient(135deg, #D97736, #C88A35); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .theme-mint .logo-title { background: linear-gradient(135deg, #4EA385, #E2795B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  .btn-header-action {
     width: 38px; height: 38px; border-radius: 12px; border: none; display: flex; align-items: center; justify-content: center; color: #FFF; cursor: pointer;
+  }
+  .theme-lilac .btn-header-action {
     background: linear-gradient(135deg, #D8B4E2, #F4ACB7); box-shadow: 0 4px 12px rgba(216, 180, 226, 0.45);
   }
+  .theme-oat .btn-header-action {
+    background: linear-gradient(135deg, #E8A87C, #E2795B); box-shadow: 0 4px 12px rgba(232, 168, 124, 0.45);
+  }
 
-  /* Search Box in Screen 1 */
-  .search-container { padding: 0 20px 16px 20px; }
-  .search-input-wrap {
-    position: relative; display: flex; align-items: center;
-  }
-  .search-input-wrap svg {
-    position: absolute; left: 14px; width: 18px; height: 18px; stroke: #8C8294; fill: none; stroke-width: 2;
-  }
+  .section-label { font-size: 13px; font-weight: 600; color: #8C8294; margin: 0 20px 10px 20px; }
+  .theme-oat .section-label { color: #8C7F72; }
+
+  /* Search & Filter Bar */
+  .filter-section { padding: 0 20px 14px 20px; display: flex; flex-direction: column; gap: 10px; }
+  .search-input-wrap { position: relative; display: flex; align-items: center; }
+  .search-input-wrap svg { position: absolute; left: 14px; width: 18px; height: 18px; stroke: #8C8294; fill: none; stroke-width: 2; }
+  
   .search-bar {
     width: 100%; height: 44px; border-radius: 14px; border: 1.5px solid #F0EAF2; background: #FFF;
     padding: 0 14px 0 40px; font-size: 14px; font-family: inherit; color: #3D3543; outline: none; transition: border-color 0.2s;
   }
+  .theme-oat .search-bar { border-color: #EFE8DE; color: #3C3630; }
   .search-bar:focus { border-color: #A267B3; }
+  .theme-oat .search-bar:focus { border-color: #D97736; }
 
-  /* Book Cards List */
+  .filter-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; -ms-overflow-style: none; scrollbar-width: none; }
+  .filter-pills::-webkit-scrollbar { display: none; }
+  .pill-select {
+    height: 32px; border-radius: 10px; border: 1px solid #EFE8DE; background: #FFF; padding: 0 10px;
+    font-size: 12px; font-family: inherit; color: #6D6256; outline: none; font-weight: 500; cursor: pointer;
+  }
+
+  /* Book Cards */
   .book-list { padding: 0 20px; display: flex; flex-direction: column; gap: 12px; }
   .book-card {
     background: #FFF; border-radius: 18px; padding: 16px; border: 1px solid #F0EAF2;
     display: flex; justify-content: space-between; align-items: center; cursor: pointer;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
+  .theme-oat .book-card { border-color: #EFE8DE; }
   .book-card:active { transform: scale(0.98); }
   .book-info { flex: 1; margin-right: 12px; }
-  .book-badge {
-    display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 6px; margin-bottom: 6px;
-  }
+  
+  .badge-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
+  .book-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 6px; }
   .badge-manga { background: #F4EBF7; color: #A267B3; }
   .badge-novel { background: #E6F4F1; color: #4EA385; }
+  .badge-complete { background: #EAE6DF; color: #73695F; }
+  
   .book-name { font-size: 15px; font-weight: 600; color: #3D3543; margin-bottom: 4px; line-height: 1.3; }
+  .theme-oat .book-name { color: #3C3630; }
   .book-sub { font-size: 12px; color: #8C8294; }
+  .theme-oat .book-sub { color: #8C7F72; }
+  
   .book-vols {
     text-align: right; background: #FAF7FA; padding: 6px 12px; border-radius: 12px; border: 1px solid #F0EAF2; min-width: 75px;
   }
-  .vol-num { font-size: 16px; font-weight: 700; color: #A267B3; }
+  .theme-oat .book-vols { background: #FDFBF8; border-color: #EFE8DE; }
+  .vol-num { font-size: 16px; font-weight: 700; color: #A267B3; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .theme-oat .vol-num { color: #D97736; }
   .vol-label { font-size: 10px; color: #8C8294; display: block; }
 
   .empty-state { text-align: center; padding: 40px 20px; color: #8C8294; font-size: 14px; }
 
-  /* Dashboard Stats Grid */
-  .dash-grid { padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+  /* Dashboard Analytics */
+  .dash-container { padding: 0 20px; display: flex; flex-direction: column; gap: 16px; }
+  .dash-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  
   .stat-card {
-    background: #FFF; border-radius: 18px; padding: 18px 16px; border: 1px solid #E2EFEA;
+    background: #FFF; border-radius: 18px; padding: 16px; border: 1px solid #E2EFEA;
     display: flex; flex-direction: column; gap: 4px;
   }
-  .stat-val { font-size: 24px; font-weight: 700; color: #4EA385; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .stat-val { font-size: 22px; font-weight: 700; color: #4EA385; font-family: 'Plus Jakarta Sans', sans-serif; }
   .stat-label { font-size: 12px; color: #7B8E87; font-weight: 500; }
 
-  .stat-wide {
-    grid-column: span 2; background: linear-gradient(135deg, #4EA385, #67B99D); color: #FFF;
-    border: none; padding: 20px; border-radius: 20px; box-shadow: 0 8px 20px rgba(78, 163, 133, 0.25);
+  .stat-hero {
+    background: linear-gradient(135deg, #4EA385, #67B99D); color: #FFF;
+    border: none; padding: 20px; border-radius: 20px; box-shadow: 0 8px 20px rgba(78, 163, 133, 0.2);
   }
-  .stat-wide .stat-val { color: #FFF; font-size: 28px; }
-  .stat-wide .stat-label { color: rgba(255, 255, 255, 0.85); }
+  .stat-hero .stat-val { color: #FFF; font-size: 28px; }
+  .stat-hero .stat-label { color: rgba(255, 255, 255, 0.88); }
+
+  .breakdown-card {
+    background: #FFF; border-radius: 18px; padding: 18px 16px; border: 1px solid #E2EFEA;
+  }
+  .breakdown-title { font-size: 14px; font-weight: 600; color: #2D3D37; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+  .breakdown-item { margin-bottom: 12px; }
+  .breakdown-item:last-child { margin-bottom: 0; }
+  .breakdown-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; color: #4A5B55; }
+  .breakdown-bar-bg { height: 8px; background: #EEF6F3; border-radius: 4px; overflow: hidden; }
+  .breakdown-bar-fill { height: 100%; border-radius: 4px; }
 
   /* Modals */
   .modal-overlay {
@@ -157,6 +195,13 @@
   .stepper input { width: 60px; text-align: center; height: 36px; border-radius: 10px; border: 1.5px solid #F0EAF2; font-size: 16px; font-weight: 600; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
+  .checkbox-card {
+    display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px;
+    background: #FDFBF8; border: 1.5px solid #EFE8DE; cursor: pointer;
+  }
+  .checkbox-card input[type="checkbox"] { width: 18px; height: 18px; accent-color: #D97736; cursor: pointer; }
+  .checkbox-card span { font-size: 13px; font-weight: 600; color: #5C5247; }
+
   .btn-save {
     width: 100%; height: 50px; border-radius: 16px; border: none; margin-top: 10px;
     background: linear-gradient(135deg, #A267B3, #D87080); color: #FFF; font-size: 16px; font-weight: 600; font-family: inherit;
@@ -164,6 +209,7 @@
   }
   .btn-save:disabled { opacity: 0.7; cursor: not-allowed; }
 
+  /* Bottom Navigation Dock (3 Tabs) */
   .bottom-dock {
     position: absolute; bottom: 0; left: 0; right: 0; height: 72px;
     background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px);
@@ -171,11 +217,12 @@
   }
   .nav-tab {
     display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer;
-    padding: 6px 20px; border-radius: 14px; border: none; background: transparent; color: #9E95A6;
+    padding: 6px 14px; border-radius: 14px; border: none; background: transparent; color: #9E95A6;
   }
   .nav-tab svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
   .nav-tab span { font-size: 11px; font-weight: 500; font-family: inherit; }
   .nav-tab.active-lilac { color: #A267B3; }
+  .nav-tab.active-oat { color: #D97736; }
   .nav-tab.active-mint { color: #4EA385; }
 </style>
 </head>
@@ -183,62 +230,126 @@
 
 <div class="mobile-container" id="appContainer">
 
-  <!-- SCREEN 1: SEARCH & MANAGE -->
-  <div class="screen theme-lilac active" id="searchScreen">
+  <!-- ================= TAB 1: QUICK ADD & RECENT (Lilac) ================= -->
+  <div class="screen theme-lilac active" id="quickScreen">
     <header class="header">
       <div class="logo-group"><h1 class="logo-title">SparkleDex</h1></div>
-      <button class="btn-add" onclick="openAddModal()">
+      <button class="btn-header-action" onclick="openAddModal()">
         <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       </button>
     </header>
 
-    <div class="search-container">
-      <div class="search-input-wrap">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" id="mainSearchInput" class="search-bar" placeholder="ค้นหาชื่อเรื่อง หรือสำนักพิมพ์..." oninput="renderBookList()">
-      </div>
-    </div>
-
-    <div class="book-list" id="bookCardsContainer">
-      <div class="empty-state">กำลังโหลดข้อมูลมังงะ...</div>
+    <div class="section-label">รายการที่อัปเดตล่าสุด</div>
+    <div class="book-list" id="recentCardsContainer">
+      <div class="empty-state">กำลังโหลดข้อมูล...</div>
     </div>
   </div>
 
-  <!-- SCREEN 2: ANALYTICS -->
+  <!-- ================= TAB 2: LIBRARY & MANAGE (Warm Oat Latte) ================= -->
+  <div class="screen theme-oat" id="libScreen">
+    <header class="header">
+      <div class="logo-group"><h1 class="logo-title">Library</h1></div>
+      <button class="btn-header-action" onclick="openAddModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </button>
+    </header>
+
+    <div class="filter-section">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="libSearchInput" class="search-bar" placeholder="ค้นหาชื่อเรื่อง หรือสำนักพิมพ์..." oninput="renderLibraryList()">
+      </div>
+      
+      <div class="filter-pills">
+        <select id="filterType" class="pill-select" onchange="renderLibraryList()">
+          <option value="all">ทุกประเภท</option>
+          <option value="มังงะ">มังงะ</option>
+          <option value="นิยาย">นิยาย</option>
+        </select>
+        <select id="filterStatus" class="pill-select" onchange="renderLibraryList()">
+          <option value="all">ทุกสถานะ</option>
+          <option value="ยังไม่จบ">ยังไม่จบ</option>
+          <option value="จบแล้ว">จบแล้ว</option>
+        </select>
+        <select id="filterPublisher" class="pill-select" onchange="renderLibraryList()">
+          <option value="all">ทุกสำนักพิมพ์</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="book-list" id="libraryCardsContainer">
+      <div class="empty-state">กำลังจัดเรียงคลังหนังสือ...</div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 3: DASHBOARD ANALYTICS (Mint) ================= -->
   <div class="screen theme-mint" id="dashScreen">
     <header class="header">
       <div class="logo-group"><h1 class="logo-title">Analytics</h1></div>
     </header>
 
-    <div class="dash-grid">
-      <div class="stat-card stat-wide">
-        <span class="stat-label">ยอดสะสมค่าหนังสือรวม</span>
+    <div class="dash-container">
+      
+      <!-- 1. จำนวนหนังสือทั้งหมด & 3. จำนวนเรื่องทั้งหมด -->
+      <div class="dash-grid-2">
+        <div class="stat-card">
+          <span class="stat-label">จำนวนหนังสือทั้งหมด</span>
+          <span class="stat-val" id="dashTotalVols">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">จำนวนเรื่องทั้งหมด</span>
+          <span class="stat-val" id="dashTotalTitles">0</span>
+        </div>
+      </div>
+
+      <!-- 4. อ่านไปแล้ว & 5. ดองไว้ -->
+      <div class="dash-grid-2">
+        <div class="stat-card">
+          <span class="stat-label">อ่านไปแล้ว (เล่ม)</span>
+          <span class="stat-val" id="dashTotalRead">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">ดองไว้ (เล่ม)</span>
+          <span class="stat-val" style="color: #E2795B;" id="dashTotalUnread">0</span>
+        </div>
+      </div>
+
+      <!-- 6. ยอดสะสมค่าหนังสือทั้งหมด -->
+      <div class="stat-card stat-hero">
+        <span class="stat-label">ยอดสะสมค่าหนังสือทั้งหมด</span>
         <span class="stat-val" id="dashTotalPrice">฿0</span>
       </div>
-      <div class="stat-card">
-        <span class="stat-label">จำนวนเรื่องทั้งหมด</span>
-        <span class="stat-val" id="dashTotalTitles">0</span>
+
+      <!-- 2. จำนวนหนังสือแยกตามสำนักพิมพ์ -->
+      <div class="breakdown-card">
+        <div class="breakdown-title">
+          <span>จำนวนหนังสือแยกตามสำนักพิมพ์</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4EA385" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        </div>
+        <div id="pubVolumeList"></div>
       </div>
-      <div class="stat-card">
-        <span class="stat-label">จำนวนเล่มทั้งหมด</span>
-        <span class="stat-val" id="dashTotalVols">0</span>
+
+      <!-- 7. ยอดสะสมแยกตามสำนักพิมพ์ -->
+      <div class="breakdown-card">
+        <div class="breakdown-title">
+          <span>ยอดสะสมแยกตามสำนักพิมพ์</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2795B" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <div id="pubSpendList"></div>
       </div>
-      <div class="stat-card">
-        <span class="stat-label">อ่านจบแล้ว (เล่ม)</span>
-        <span class="stat-val" id="dashTotalRead">0</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">ดองไว้ (เล่ม)</span>
-        <span class="stat-val" style="color: #E2795B;" id="dashTotalUnread">0</span>
-      </div>
+
     </div>
   </div>
 
-  <!-- BOTTOM DOCK -->
+  <!-- ================= BOTTOM NAVIGATION (3 Tabs) ================= -->
   <nav class="bottom-dock">
-    <button class="nav-tab active-lilac" id="tabSearch" onclick="switchTab('search')">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <span>ค้นหา</span>
+    <button class="nav-tab active-lilac" id="tabQuick" onclick="switchTab('quick')">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span>บันทึกด่วน</span>
+    </button>
+    <button class="nav-tab" id="tabLib" onclick="switchTab('lib')">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      <span>คลังหนังสือ</span>
     </button>
     <button class="nav-tab" id="tabDash" onclick="switchTab('dash')">
       <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
@@ -246,7 +357,7 @@
     </button>
   </nav>
 
-  <!-- MODAL: ADD NEW VOLUME -->
+  <!-- ================= MODAL: ADD NEW VOLUME ================= -->
   <div class="modal-overlay" id="addModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -280,7 +391,7 @@
             <div class="chip" onclick="setPublisher('Siam Inter Comics', this)">Siam Inter</div>
             <div class="chip" onclick="setPublisher('Phoenix Next', this)">Phoenix</div>
             <div class="chip" onclick="setPublisher('Luckpim', this)">Luckpim</div>
-            <div class="chip" onclick="setPublisher('Bonkoch', this)">Bonkoch</div>
+            <div class="chip" onclick="setPublisher('Bongkoch', this)">Bongkoch</div>
             <div class="chip" onclick="setPublisher('Animate', this)">Animate</div>
             <div class="chip" onclick="setPublisher('Dango', this)">Dango</div>
             <div class="chip" onclick="setPublisher('Nabu Publishing', this)">Nabu Publishing</div>
@@ -323,7 +434,7 @@
     </div>
   </div>
 
-  <!-- MODAL: EDIT TITLE DETAILS -->
+  <!-- ================= MODAL: EDIT TITLE DETAILS ================= -->
   <div class="modal-overlay" id="editModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -350,17 +461,9 @@
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">สถานะเรื่อง</label>
-            <select id="editStatus" class="form-input">
-              <option value="ยังไม่จบ">ยังไม่จบ</option>
-              <option value="จบแล้ว">จบแล้ว</option>
-            </select>
+            <label class="form-label">สำนักพิมพ์</label>
+            <input type="text" id="editPublisher" class="form-input" required>
           </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">สำนักพิมพ์</label>
-          <input type="text" id="editPublisher" class="form-input" required>
         </div>
 
         <div class="grid-2">
@@ -374,7 +477,15 @@
           </div>
         </div>
 
-        <button type="submit" class="btn-save" id="btnEditSubmit" style="background: linear-gradient(135deg, #4EA385, #E2795B);">อัปเดตข้อมูล</button>
+        <!-- จบแล้ว Checkbox Toggle -->
+        <div class="form-group">
+          <label class="checkbox-card">
+            <input type="checkbox" id="editIsComplete">
+            <span>สถานะ: เรื่องนี้จบสมบูรณ์แล้ว (Complete)</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-save" id="btnEditSubmit" style="background: linear-gradient(135deg, #D97736, #E2795B);">บันทึกการแก้ไข</button>
       </form>
     </div>
   </div>
@@ -382,96 +493,197 @@
 </div>
 
 <script>
+  // ⚠️ ตรวจสอบ URL API ของคุณหนูให้ถูกต้องครับ
   const API_URL = "https://script.google.com/macros/s/AKfycbzC7I97wis3MRFahrjkOoCM-CL6mMuAQG9eiJVJ2ZS_ZrcElq0lBjNCa6UZpWAh-DqD/exec";
   let dbTitles = [];
 
-  window.onload = function() {
-    document.getElementById('purchaseDate').value = new Date().toISOString().split('T')[0];
+  window.addEventListener('DOMContentLoaded', () => {
+    const pDate = document.getElementById('purchaseDate');
+    if (pDate) pDate.value = new Date().toISOString().split('T')[0];
     fetchAllData();
-  };
+  });
 
   async function fetchAllData() {
     try {
-      const response = await fetch(API_URL + "?action=getTitles");
+      const response = await fetch(API_URL + "?action=getTitles", {
+        method: "GET",
+        redirect: "follow"
+      });
       dbTitles = await response.json();
-      renderBookList();
+      
+      renderRecentList();
+      populatePublisherFilter();
+      renderLibraryList();
     } catch (error) {
-      document.getElementById('bookCardsContainer').innerHTML = '<div class="empty-state">โหลดข้อมูลไม่สำเร็จ ลองรีเฟรชอีกครั้งครับ</div>';
+      console.error("Fetch error:", error);
+      document.getElementById('recentCardsContainer').innerHTML = '<div class="empty-state">โหลดข้อมูลไม่สำเร็จ ลองรีเฟรชอีกครั้งครับ</div>';
     }
   }
 
   async function fetchDashboard() {
     try {
-      const res = await fetch(API_URL + "?action=getDashboard");
+      const res = await fetch(API_URL + "?action=getDashboard", { method: "GET", redirect: "follow" });
       const data = await res.json();
-      document.getElementById('dashTotalPrice').innerText = '฿' + Number(data.totalPrice || 0).toLocaleString();
-      document.getElementById('dashTotalTitles').innerText = data.totalTitles || 0;
+      
       document.getElementById('dashTotalVols').innerText = data.totalVolumes || 0;
+      document.getElementById('dashTotalTitles').innerText = data.totalTitles || 0;
       document.getElementById('dashTotalRead').innerText = data.totalRead || 0;
       document.getElementById('dashTotalUnread').innerText = data.totalUnread || 0;
+      document.getElementById('dashTotalPrice').innerText = '฿' + Number(data.totalPrice || 0).toLocaleString();
+
+      // Render รายการแยกสำนักพิมพ์ (จำนวนเล่ม)
+      const pubVolContainer = document.getElementById('pubVolumeList');
+      pubVolContainer.innerHTML = '';
+      const maxVol = (data.publishers && data.publishers.length > 0) ? data.publishers[0].volumeCount : 1;
+
+      (data.publishers || []).forEach(p => {
+        const pct = Math.max(8, (p.volumeCount / maxVol) * 100);
+        const item = document.createElement('div');
+        item.className = 'breakdown-item';
+        item.innerHTML = `
+          <div class="breakdown-header">
+            <span style="font-weight:600;">${p.publisher}</span>
+            <span><strong>${p.volumeCount}</strong> เล่ม</span>
+          </div>
+          <div class="breakdown-bar-bg">
+            <div class="breakdown-bar-fill" style="width: ${pct}%; background: linear-gradient(90deg, #4EA385, #7EC4AD);"></div>
+          </div>
+        `;
+        pubVolContainer.appendChild(item);
+      });
+
+      // Render รายการแยกสำนักพิมพ์ (ยอดเงิน)
+      const pubSpendContainer = document.getElementById('pubSpendList');
+      pubSpendContainer.innerHTML = '';
+      const maxSpend = Math.max(...(data.publishers || []).map(p => p.totalSpent), 1);
+
+      (data.publishers || []).forEach(p => {
+        const pct = Math.max(8, (p.totalSpent / maxSpend) * 100);
+        const item = document.createElement('div');
+        item.className = 'breakdown-item';
+        item.innerHTML = `
+          <div class="breakdown-header">
+            <span style="font-weight:600;">${p.publisher}</span>
+            <span>฿${Number(p.totalSpent).toLocaleString()}</span>
+          </div>
+          <div class="breakdown-bar-bg">
+            <div class="breakdown-bar-fill" style="width: ${pct}%; background: linear-gradient(90deg, #E2795B, #F4ACB7);"></div>
+          </div>
+        `;
+        pubSpendContainer.appendChild(item);
+      });
+
     } catch (e) {
       console.error(e);
     }
   }
 
-  function renderBookList() {
-    const query = document.getElementById('mainSearchInput').value.trim().toLowerCase();
-    const container = document.getElementById('bookCardsContainer');
+  function renderRecentList() {
+    const container = document.getElementById('recentCardsContainer');
+    container.innerHTML = '';
+    
+    // โหลดเฉพาะ 5 รายการล่าสุด
+    const recent = dbTitles.slice(-5).reverse();
+    if (recent.length === 0) {
+      container.innerHTML = '<div class="empty-state">ยังไม่มีรายการหนังสือ กดปุ่ม + เพื่อเพิ่มเล่มแรก</div>';
+      return;
+    }
+    recent.forEach(t => container.appendChild(createBookCard(t)));
+  }
+
+  function populatePublisherFilter() {
+    const select = document.getElementById('filterPublisher');
+    const current = select.value;
+    select.innerHTML = '<option value="all">ทุกสำนักพิมพ์</option>';
+    
+    const publishers = [...new Set(dbTitles.map(t => t.publisher).filter(Boolean))].sort();
+    publishers.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p; opt.innerText = p;
+      select.appendChild(opt);
+    });
+    if (publishers.includes(current)) select.value = current;
+  }
+
+  function renderLibraryList() {
+    const query = document.getElementById('libSearchInput').value.trim().toLowerCase();
+    const typeFilter = document.getElementById('filterType').value;
+    const statusFilter = document.getElementById('filterStatus').value;
+    const pubFilter = document.getElementById('filterPublisher').value;
+
+    const container = document.getElementById('libraryCardsContainer');
     container.innerHTML = '';
 
-    const filtered = dbTitles.filter(t => 
-      t.titleName.toLowerCase().includes(query) || 
-      (t.publisher && t.publisher.toLowerCase().includes(query))
-    );
+    const filtered = dbTitles.filter(t => {
+      const matchQuery = t.titleName.toLowerCase().includes(query) || (t.publisher && t.publisher.toLowerCase().includes(query));
+      const matchType = (typeFilter === 'all') || (t.type === typeFilter);
+      const matchStatus = (statusFilter === 'all') || (t.status === statusFilter);
+      const matchPub = (pubFilter === 'all') || (t.publisher === pubFilter);
+      return matchQuery && matchType && matchStatus && matchPub;
+    });
 
     if (filtered.length === 0) {
-      container.innerHTML = '<div class="empty-state">ไม่พบข้อมูลหนังสือ</div>';
+      container.innerHTML = '<div class="empty-state">ไม่พบข้อมูลตามเงื่อนไขที่เลือก</div>';
       return;
     }
 
-    filtered.forEach(t => {
-      const card = document.createElement('div');
-      card.className = 'book-card';
-      const badgeClass = t.type === 'นิยาย' ? 'badge-novel' : 'badge-manga';
-      card.innerHTML = `
-        <div class="book-info">
-          <span class="book-badge ${badgeClass}">${t.type}</span>
-          <div class="book-name">${t.titleName}</div>
-          <div class="book-sub">${t.publisher} • อ่านแล้ว: เล่ม ${t.readUpTo || 0}</div>
+    filtered.forEach(t => container.appendChild(createBookCard(t)));
+  }
+
+  function createBookCard(t) {
+    const card = document.createElement('div');
+    card.className = 'book-card';
+    const badgeTypeClass = t.type === 'นิยาย' ? 'badge-novel' : 'badge-manga';
+    const isComplete = t.status === 'จบแล้ว';
+
+    card.innerHTML = `
+      <div class="book-info">
+        <div class="badge-row">
+          <span class="book-badge ${badgeTypeClass}">${t.type}</span>
+          ${isComplete ? '<span class="book-badge badge-complete">จบแล้ว</span>' : ''}
         </div>
-        <div class="book-vols">
-          <span class="vol-num">${t.latestVol}</span>
-          <span class="vol-label">เล่มล่าสุด</span>
-        </div>
-      `;
-      card.onclick = () => openEditModal(t);
-      container.appendChild(card);
-    });
+        <div class="book-name">${t.titleName}</div>
+        <div class="book-sub">${t.publisher} • อ่านแล้ว: เล่ม ${t.readUpTo || 0}</div>
+      </div>
+      <div class="book-vols">
+        <span class="vol-num">${t.latestVol}</span>
+        <span class="vol-label">เล่มล่าสุด</span>
+      </div>
+    `;
+    card.onclick = () => openEditModal(t);
+    return card;
   }
 
   function switchTab(target) {
-    const sSearch = document.getElementById('searchScreen');
-    const sDash = document.getElementById('dashScreen');
-    const tSearch = document.getElementById('tabSearch');
-    const tDash = document.getElementById('tabDash');
+    const qS = document.getElementById('quickScreen');
+    const lS = document.getElementById('libScreen');
+    const dS = document.getElementById('dashScreen');
+    const tQ = document.getElementById('tabQuick');
+    const tL = document.getElementById('tabLib');
+    const tD = document.getElementById('tabDash');
     const app = document.getElementById('appContainer');
 
-    if(target === 'search') {
-      sSearch.classList.add('active'); sDash.classList.remove('active');
-      tSearch.className = 'nav-tab active-lilac'; tDash.className = 'nav-tab';
+    [qS, lS, dS].forEach(s => s.classList.remove('active'));
+    [tQ, tL, tD].forEach(t => t.className = 'nav-tab');
+
+    if(target === 'quick') {
+      qS.classList.add('active');
+      tQ.className = 'nav-tab active-lilac';
       app.style.backgroundColor = '#FAF7F5';
+    } else if(target === 'lib') {
+      lS.classList.add('active');
+      tL.className = 'nav-tab active-oat';
+      app.style.backgroundColor = '#FAF6F0';
+      renderLibraryList();
     } else {
-      sSearch.classList.remove('active'); sDash.classList.add('active');
-      tSearch.className = 'nav-tab'; tDash.className = 'nav-tab active-mint';
+      dS.classList.add('active');
+      tD.className = 'nav-tab active-mint';
       app.style.backgroundColor = '#F4F8F6';
       fetchDashboard();
     }
   }
 
-  function openAddModal() {
-    document.getElementById('addModal').classList.add('show');
-  }
-
+  function openAddModal() { document.getElementById('addModal').classList.add('show'); }
   function closeAddModal() {
     document.getElementById('addModal').classList.remove('show');
     document.getElementById('addForm').reset();
@@ -488,13 +700,11 @@
     document.getElementById('editPublisher').value = item.publisher;
     document.getElementById('editLatestVol').value = item.latestVol;
     document.getElementById('editReadUpTo').value = item.readUpTo;
-    document.getElementById('editStatus').value = item.status;
+    document.getElementById('editIsComplete').checked = (item.status === 'จบแล้ว');
     document.getElementById('editModal').classList.add('show');
   }
 
-  function closeEditModal() {
-    document.getElementById('editModal').classList.remove('show');
-  }
+  function closeEditModal() { document.getElementById('editModal').classList.remove('show'); }
 
   function setType(type) {
     document.getElementById('typeVal').value = type;
@@ -515,8 +725,7 @@
   }
 
   function clearChips() {
-    const chips = document.querySelectorAll('.chip');
-    chips.forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
   }
 
   function stepVol(step) {
@@ -575,8 +784,7 @@
       volNo: document.getElementById('volNo').value,
       price: document.getElementById('price').value,
       readStatus: document.getElementById('readStatusVal').value,
-      purchaseDate: document.getElementById('purchaseDate').value,
-      note: ''
+      purchaseDate: document.getElementById('purchaseDate').value
     };
 
     try {
@@ -603,6 +811,7 @@
     btn.disabled = true;
     btn.innerText = 'กำลังอัปเดต...';
 
+    const isComplete = document.getElementById('editIsComplete').checked;
     const updateData = {
       action: 'updateTitle',
       titleId: document.getElementById('editTitleId').value,
@@ -611,7 +820,7 @@
       publisher: document.getElementById('editPublisher').value,
       latestVol: document.getElementById('editLatestVol').value,
       readUpTo: document.getElementById('editReadUpTo').value,
-      status: document.getElementById('editStatus').value
+      status: isComplete ? 'จบแล้ว' : 'ยังไม่จบ'
     };
 
     try {
@@ -628,7 +837,7 @@
       alert("เกิดข้อผิดพลาดในการอัปเดต");
     } finally {
       btn.disabled = false;
-      btn.innerText = 'อัปเดตข้อมูล';
+      btn.innerText = 'บันทึกการแก้ไข';
     }
   }
 </script>
