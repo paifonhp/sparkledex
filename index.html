@@ -1,0 +1,63 @@
+// นำ URL ที่เพิ่ง Deploy ใหม่มาใส่ในตัวแปรนี้
+  const API_URL = "https://script.google.com/macros/s/AKfycbyOJsq2lRRwZVQnK6mtptN4ndVJG84cz25QspFtl5qRN84S06rKX1hV4MVj9WCcrfod/exec";
+  let dbTitles = [];
+
+  // เมื่อโหลดหน้าเว็บเสร็จ ไปดึงข้อมูลมาผ่าน fetch
+  window.onload = async function() {
+    document.getElementById('purchaseDate').value = new Date().toISOString().split('T')[0];
+    
+    try {
+      const response = await fetch(API_URL + "?action=getTitles");
+      const data = await response.json();
+      dbTitles = data;
+    } catch (error) {
+      console.error("ดึงข้อมูลไม่สำเร็จ:", error);
+    }
+  };
+
+  // ... (โค้ดควบคุม UI, Modal, Autocomplete ใช้ของเดิมได้เลย) ...
+
+  // ระบบบันทึกข้อมูลส่งไป GAS ผ่าน fetch POST
+  async function handleSave(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.innerText = 'กำลังบันทึก...';
+
+    const formData = {
+      titleId: document.getElementById('titleId').value,
+      titleName: document.getElementById('titleName').value,
+      type: document.getElementById('typeVal').value,
+      publisher: document.getElementById('publisher').value,
+      volNo: document.getElementById('volNo').value,
+      price: document.getElementById('price').value,
+      readStatus: document.getElementById('readStatusVal').value,
+      purchaseDate: document.getElementById('purchaseDate').value,
+      note: ''
+    };
+
+    try {
+      // ส่งข้อมูลด้วย POST
+      const response = await fetch(API_URL, {
+        method: "POST",
+        // ใช้ text/plain เพื่อเลี่ยงการติด CORS Preflight error
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      alert(result.message);
+      
+      // ดึงข้อมูลอัปเดตใหม่
+      const refresh = await fetch(API_URL + "?action=getTitles");
+      dbTitles = await refresh.json();
+      
+      closeModal();
+    } catch (error) {
+      alert("เกิดข้อผิดพลาดในการบันทึก");
+      console.error(error);
+    } finally {
+      btn.disabled = false;
+      btn.innerText = 'บันทึกเล่มนี้';
+    }
+  }
