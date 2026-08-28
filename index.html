@@ -30,7 +30,6 @@
     overflow-x: hidden;
   }
 
-  /* Themes */
   .theme-lilac { --bg-main: #FAF7F5; --primary: #A267B3; --primary-light: #D8B4E2; --text-main: #3D3543; }
   .theme-mint { --bg-main: #F4F8F6; --primary: #4EA385; --primary-light: #BCE5D6; --text-main: #2D3D37; }
 
@@ -38,7 +37,7 @@
   .screen.active { display: flex; }
 
   /* Header */
-  .header { padding: 24px 22px 14px 22px; display: flex; justify-content: space-between; align-items: center; }
+  .header { padding: 22px 20px 14px 20px; display: flex; justify-content: space-between; align-items: center; }
   .logo-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
   .theme-lilac .logo-title { background: linear-gradient(135deg, #A267B3, #D87080); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .theme-mint .logo-title { background: linear-gradient(135deg, #4EA385, #E2795B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -48,40 +47,76 @@
     background: linear-gradient(135deg, #D8B4E2, #F4ACB7); box-shadow: 0 4px 12px rgba(216, 180, 226, 0.45);
   }
 
-  .search-section, .content-area { padding: 12px 22px; }
+  /* Search Box in Screen 1 */
+  .search-container { padding: 0 20px 16px 20px; }
+  .search-input-wrap {
+    position: relative; display: flex; align-items: center;
+  }
+  .search-input-wrap svg {
+    position: absolute; left: 14px; width: 18px; height: 18px; stroke: #8C8294; fill: none; stroke-width: 2;
+  }
+  .search-bar {
+    width: 100%; height: 44px; border-radius: 14px; border: 1.5px solid #F0EAF2; background: #FFF;
+    padding: 0 14px 0 40px; font-size: 14px; font-family: inherit; color: #3D3543; outline: none; transition: border-color 0.2s;
+  }
+  .search-bar:focus { border-color: #A267B3; }
+
+  /* Book Cards List */
+  .book-list { padding: 0 20px; display: flex; flex-direction: column; gap: 12px; }
+  .book-card {
+    background: #FFF; border-radius: 18px; padding: 16px; border: 1px solid #F0EAF2;
+    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .book-card:active { transform: scale(0.98); }
+  .book-info { flex: 1; margin-right: 12px; }
+  .book-badge {
+    display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 6px; margin-bottom: 6px;
+  }
+  .badge-manga { background: #F4EBF7; color: #A267B3; }
+  .badge-novel { background: #E6F4F1; color: #4EA385; }
+  .book-name { font-size: 15px; font-weight: 600; color: #3D3543; margin-bottom: 4px; line-height: 1.3; }
+  .book-sub { font-size: 12px; color: #8C8294; }
+  .book-vols {
+    text-align: right; background: #FAF7FA; padding: 6px 12px; border-radius: 12px; border: 1px solid #F0EAF2; min-width: 75px;
+  }
+  .vol-num { font-size: 16px; font-weight: 700; color: #A267B3; }
+  .vol-label { font-size: 10px; color: #8C8294; display: block; }
+
   .empty-state { text-align: center; padding: 40px 20px; color: #8C8294; font-size: 14px; }
 
-  /* ================= MODAL ADD NEW VOLUME ================= */
+  /* Dashboard Stats Grid */
+  .dash-grid { padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+  .stat-card {
+    background: #FFF; border-radius: 18px; padding: 18px 16px; border: 1px solid #E2EFEA;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .stat-val { font-size: 24px; font-weight: 700; color: #4EA385; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .stat-label { font-size: 12px; color: #7B8E87; font-weight: 500; }
+
+  .stat-wide {
+    grid-column: span 2; background: linear-gradient(135deg, #4EA385, #67B99D); color: #FFF;
+    border: none; padding: 20px; border-radius: 20px; box-shadow: 0 8px 20px rgba(78, 163, 133, 0.25);
+  }
+  .stat-wide .stat-val { color: #FFF; font-size: 28px; }
+  .stat-wide .stat-label { color: rgba(255, 255, 255, 0.85); }
+
+  /* Modals */
   .modal-overlay {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(45, 35, 50, 0.6); backdrop-filter: blur(4px);
-    display: none; 
-    z-index: 999;
-    opacity: 0; transition: opacity 0.3s ease;
-    padding: 20px;
+    display: none; z-index: 999; opacity: 0; transition: opacity 0.3s ease; padding: 20px;
   }
-  
-  .modal-overlay.show { 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    opacity: 1; 
-  }
-
+  .modal-overlay.show { display: flex; justify-content: center; align-items: center; opacity: 1; }
   .modal-content {
-    background: #FFFFFF; width: 100%; max-width: 412px;
-    border-radius: 24px;
-    padding: 24px 22px 24px 22px;
-    transform: scale(0.95); 
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    max-height: 85vh; overflow-y: auto;
-    margin: auto;
+    background: #FFFFFF; width: 100%; max-width: 412px; border-radius: 24px;
+    padding: 24px 22px; transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-height: 85vh; overflow-y: auto; margin: auto;
   }
   .modal-overlay.show .modal-content { transform: scale(1); }
-
   .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
   .modal-title { font-size: 18px; font-weight: 600; color: #3D3543; }
-  .btn-close { background: none; border: none; cursor: pointer; color: #8C8294; display: flex; align-items: center; justify-content: center; }
+  .btn-close { background: none; border: none; cursor: pointer; color: #8C8294; display: flex; align-items: center; }
 
   .form-group { margin-bottom: 16px; position: relative; }
   .form-label { display: block; font-size: 12px; font-weight: 600; color: #8C8294; margin-bottom: 6px; }
@@ -91,17 +126,15 @@
   }
   .form-input:focus { border-color: #A267B3; }
 
-  /* Autocomplete Suggestions */
   .suggestions-box {
     position: absolute; top: 70px; left: 0; right: 0; background: #FFF; border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid #F0EAF2; max-height: 200px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid #F0EAF2; max-height: 180px;
     overflow-y: auto; z-index: 10; display: none;
   }
   .suggestion-item { padding: 12px 14px; font-size: 14px; border-bottom: 1px solid #F9F7FA; cursor: pointer; }
   .suggestion-item:last-child { border-bottom: none; }
   .suggestion-item:hover { background: #FAF5FC; color: #A267B3; font-weight: 500; }
 
-  /* Publisher Chips */
   .chips-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
   .chip {
     padding: 6px 12px; border-radius: 16px; background: #F9F7FA; border: 1px solid #F0EAF2;
@@ -109,7 +142,6 @@
   }
   .chip.active { background: #F4EBF7; border-color: #D8B4E2; color: #A267B3; font-weight: 600; }
 
-  /* Type Segment */
   .segment-control { display: flex; background: #F9F7FA; border-radius: 12px; padding: 4px; gap: 4px; }
   .segment-btn {
     flex: 1; text-align: center; padding: 8px; border-radius: 8px; border: none; background: transparent;
@@ -117,15 +149,12 @@
   }
   .segment-btn.active { background: #FFF; color: #3D3543; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 
-  /* Volume Stepper */
   .stepper { display: flex; align-items: center; gap: 12px; }
   .btn-step {
     width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #F0EAF2; background: #FFF;
     font-size: 18px; color: #A267B3; display: flex; justify-content: center; align-items: center; cursor: pointer;
   }
   .stepper input { width: 60px; text-align: center; height: 36px; border-radius: 10px; border: 1.5px solid #F0EAF2; font-size: 16px; font-weight: 600; }
-
-  /* Grid 2 Cols */
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
   .btn-save {
@@ -135,7 +164,6 @@
   }
   .btn-save:disabled { opacity: 0.7; cursor: not-allowed; }
 
-  /* Bottom Dock */
   .bottom-dock {
     position: absolute; bottom: 0; left: 0; right: 0; height: 72px;
     background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px);
@@ -155,29 +183,58 @@
 
 <div class="mobile-container" id="appContainer">
 
-  <!-- ================= SCREEN 1: SEARCH (Lilac) ================= -->
+  <!-- SCREEN 1: SEARCH & MANAGE -->
   <div class="screen theme-lilac active" id="searchScreen">
     <header class="header">
       <div class="logo-group"><h1 class="logo-title">SparkleDex</h1></div>
-      <button class="btn-add" onclick="openModal()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      <button class="btn-add" onclick="openAddModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       </button>
     </header>
-    <div class="empty-state">
-      <p>กดปุ่ม + มุมขวาบนเพื่อเพิ่มหนังสือเล่มแรก</p>
-      <p style="font-size: 12px; margin-top:8px;">(ระบบค้นหาและแสดงรายการกำลังอยู่ในคิวเฟสถัดไปครับ)</p>
+
+    <div class="search-container">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="mainSearchInput" class="search-bar" placeholder="ค้นหาชื่อเรื่อง หรือสำนักพิมพ์..." oninput="renderBookList()">
+      </div>
+    </div>
+
+    <div class="book-list" id="bookCardsContainer">
+      <div class="empty-state">กำลังโหลดข้อมูลมังงะ...</div>
     </div>
   </div>
 
-  <!-- ================= SCREEN 2: DASHBOARD (Mint) ================= -->
+  <!-- SCREEN 2: ANALYTICS -->
   <div class="screen theme-mint" id="dashScreen">
     <header class="header">
       <div class="logo-group"><h1 class="logo-title">Analytics</h1></div>
     </header>
-    <div class="empty-state">แดชบอร์ดกำลังรอข้อมูล...</div>
+
+    <div class="dash-grid">
+      <div class="stat-card stat-wide">
+        <span class="stat-label">ยอดสะสมค่าหนังสือรวม</span>
+        <span class="stat-val" id="dashTotalPrice">฿0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">จำนวนเรื่องทั้งหมด</span>
+        <span class="stat-val" id="dashTotalTitles">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">จำนวนเล่มทั้งหมด</span>
+        <span class="stat-val" id="dashTotalVols">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">อ่านจบแล้ว (เล่ม)</span>
+        <span class="stat-val" id="dashTotalRead">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">ดองไว้ (เล่ม)</span>
+        <span class="stat-val" style="color: #E2795B;" id="dashTotalUnread">0</span>
+      </div>
+    </div>
   </div>
 
-  <!-- ================= BOTTOM NAVIGATION ================= -->
+  <!-- BOTTOM DOCK -->
   <nav class="bottom-dock">
     <button class="nav-tab active-lilac" id="tabSearch" onclick="switchTab('search')">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -189,28 +246,25 @@
     </button>
   </nav>
 
-  <!-- ================= MODAL ADD VOLUME ================= -->
+  <!-- MODAL: ADD NEW VOLUME -->
   <div class="modal-overlay" id="addModal">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title">บันทึกเล่มใหม่</h2>
-        <button class="btn-close" onclick="closeModal()">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <button class="btn-close" onclick="closeAddModal()">
+          <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
 
-      <!-- Form -->
       <form id="addForm" onsubmit="handleSave(event)">
         <input type="hidden" id="titleId" name="titleId">
 
-        <!-- ชื่อเรื่อง + Autocomplete -->
         <div class="form-group">
-          <label class="form-label">ชื่อเรื่อง (พิมพ์เพื่อค้นหา)</label>
-          <input type="text" id="titleName" class="form-input" placeholder="เช่น มหาเวทย์ผนึกมาร..." autocomplete="off" required oninput="filterTitles()">
+          <label class="form-label">ชื่อเรื่อง (พิมพ์เพื่อค้นหาเรื่องเดิม)</label>
+          <input type="text" id="titleName" class="form-input" placeholder="เช่น มหาเวทย์ผนึกมาร..." autocomplete="off" required oninput="filterSuggestions()">
           <div class="suggestions-box" id="suggestionsBox"></div>
         </div>
 
-        <!-- ประเภท -->
         <div class="form-group">
           <label class="form-label">ประเภท</label>
           <div class="segment-control">
@@ -220,10 +274,9 @@
           <input type="hidden" id="typeVal" value="มังงะ">
         </div>
 
-        <!-- สำนักพิมพ์ -->
         <div class="form-group">
           <label class="form-label">สำนักพิมพ์</label>
-          <div class="chips-container" id="pubChips">
+          <div class="chips-container">
             <div class="chip" onclick="setPublisher('Siam Inter Comics', this)">Siam Inter</div>
             <div class="chip" onclick="setPublisher('Phoenix Next', this)">Phoenix</div>
             <div class="chip" onclick="setPublisher('Luckpim', this)">Luckpim</div>
@@ -236,7 +289,6 @@
         </div>
 
         <div class="grid-2">
-          <!-- เล่มที่ -->
           <div class="form-group">
             <label class="form-label">เล่มที่</label>
             <div class="stepper">
@@ -245,8 +297,6 @@
               <div class="btn-step" onclick="stepVol(1)">+</div>
             </div>
           </div>
-          
-          <!-- ราคา -->
           <div class="form-group">
             <label class="form-label">ราคา (บาท)</label>
             <input type="number" id="price" class="form-input" value="0" min="0">
@@ -254,13 +304,10 @@
         </div>
 
         <div class="grid-2">
-          <!-- วันที่ซื้อ -->
           <div class="form-group">
             <label class="form-label">วันที่ซื้อ</label>
             <input type="date" id="purchaseDate" class="form-input" required>
           </div>
-          
-          <!-- สถานะการอ่าน -->
           <div class="form-group">
             <label class="form-label">สถานะ</label>
             <div class="segment-control">
@@ -276,22 +323,131 @@
     </div>
   </div>
 
+  <!-- MODAL: EDIT TITLE DETAILS -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">จัดการข้อมูลเรื่อง</h2>
+        <button class="btn-close" onclick="closeEditModal()">
+          <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <form id="editForm" onsubmit="handleUpdateTitle(event)">
+        <input type="hidden" id="editTitleId">
+
+        <div class="form-group">
+          <label class="form-label">ชื่อเรื่อง</label>
+          <input type="text" id="editTitleName" class="form-input" required>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">ประเภท</label>
+            <select id="editType" class="form-input">
+              <option value="มังงะ">มังงะ</option>
+              <option value="นิยาย">นิยาย</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">สถานะเรื่อง</label>
+            <select id="editStatus" class="form-input">
+              <option value="ยังไม่จบ">ยังไม่จบ</option>
+              <option value="จบแล้ว">จบแล้ว</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">สำนักพิมพ์</label>
+          <input type="text" id="editPublisher" class="form-input" required>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">มีถึงเล่มที่</label>
+            <input type="number" id="editLatestVol" class="form-input" min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">อ่านถึงเล่มที่</label>
+            <input type="number" id="editReadUpTo" class="form-input" min="0">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-save" id="btnEditSubmit" style="background: linear-gradient(135deg, #4EA385, #E2795B);">อัปเดตข้อมูล</button>
+      </form>
+    </div>
+  </div>
+
 </div>
 
 <script>
   const API_URL = "https://script.google.com/macros/s/AKfycbxOyJzq2lRRwZVQnK6mtptN4ndVJG84cz25QspFtl5qRN84S06rKX1hV4MVj9WCcrfod/exec";
   let dbTitles = [];
 
-  window.onload = async function() {
+  window.onload = function() {
     document.getElementById('purchaseDate').value = new Date().toISOString().split('T')[0];
+    fetchAllData();
+  };
+
+  async function fetchAllData() {
     try {
       const response = await fetch(API_URL + "?action=getTitles");
-      const data = await response.json();
-      dbTitles = data;
+      dbTitles = await response.json();
+      renderBookList();
     } catch (error) {
-      console.error("ดึงข้อมูลไม่สำเร็จ:", error);
+      document.getElementById('bookCardsContainer').innerHTML = '<div class="empty-state">โหลดข้อมูลไม่สำเร็จ ลองรีเฟรชอีกครั้งครับ</div>';
     }
-  };
+  }
+
+  async function fetchDashboard() {
+    try {
+      const res = await fetch(API_URL + "?action=getDashboard");
+      const data = await res.json();
+      document.getElementById('dashTotalPrice').innerText = '฿' + Number(data.totalPrice || 0).toLocaleString();
+      document.getElementById('dashTotalTitles').innerText = data.totalTitles || 0;
+      document.getElementById('dashTotalVols').innerText = data.totalVolumes || 0;
+      document.getElementById('dashTotalRead').innerText = data.totalRead || 0;
+      document.getElementById('dashTotalUnread').innerText = data.totalUnread || 0;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function renderBookList() {
+    const query = document.getElementById('mainSearchInput').value.trim().toLowerCase();
+    const container = document.getElementById('bookCardsContainer');
+    container.innerHTML = '';
+
+    const filtered = dbTitles.filter(t => 
+      t.titleName.toLowerCase().includes(query) || 
+      (t.publisher && t.publisher.toLowerCase().includes(query))
+    );
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="empty-state">ไม่พบข้อมูลหนังสือ</div>';
+      return;
+    }
+
+    filtered.forEach(t => {
+      const card = document.createElement('div');
+      card.className = 'book-card';
+      const badgeClass = t.type === 'นิยาย' ? 'badge-novel' : 'badge-manga';
+      card.innerHTML = `
+        <div class="book-info">
+          <span class="book-badge ${badgeClass}">${t.type}</span>
+          <div class="book-name">${t.titleName}</div>
+          <div class="book-sub">${t.publisher} • อ่านแล้ว: เล่ม ${t.readUpTo || 0}</div>
+        </div>
+        <div class="book-vols">
+          <span class="vol-num">${t.latestVol}</span>
+          <span class="vol-label">เล่มล่าสุด</span>
+        </div>
+      `;
+      card.onclick = () => openEditModal(t);
+      container.appendChild(card);
+    });
+  }
 
   function switchTab(target) {
     const sSearch = document.getElementById('searchScreen');
@@ -308,20 +464,36 @@
       sSearch.classList.remove('active'); sDash.classList.add('active');
       tSearch.className = 'nav-tab'; tDash.className = 'nav-tab active-mint';
       app.style.backgroundColor = '#F4F8F6';
+      fetchDashboard();
     }
   }
 
-  function openModal() {
+  function openAddModal() {
     document.getElementById('addModal').classList.add('show');
   }
 
-  function closeModal() {
+  function closeAddModal() {
     document.getElementById('addModal').classList.remove('show');
     document.getElementById('addForm').reset();
     document.getElementById('titleId').value = '';
     document.getElementById('purchaseDate').value = new Date().toISOString().split('T')[0];
     document.getElementById('suggestionsBox').style.display = 'none';
     clearChips();
+  }
+
+  function openEditModal(item) {
+    document.getElementById('editTitleId').value = item.titleId;
+    document.getElementById('editTitleName').value = item.titleName;
+    document.getElementById('editType').value = item.type;
+    document.getElementById('editPublisher').value = item.publisher;
+    document.getElementById('editLatestVol').value = item.latestVol;
+    document.getElementById('editReadUpTo').value = item.readUpTo;
+    document.getElementById('editStatus').value = item.status;
+    document.getElementById('editModal').classList.add('show');
+  }
+
+  function closeEditModal() {
+    document.getElementById('editModal').classList.remove('show');
   }
 
   function setType(type) {
@@ -353,8 +525,8 @@
     if (val + step >= 1) input.value = val + step;
   }
 
-  function filterTitles() {
-    const input = document.getElementById('titleName').value.toLowerCase();
+  function filterSuggestions() {
+    const input = document.getElementById('titleName').value.trim().toLowerCase();
     const box = document.getElementById('suggestionsBox');
     box.innerHTML = '';
     document.getElementById('titleId').value = '';
@@ -362,13 +534,12 @@
     if (!input) { box.style.display = 'none'; return; }
 
     const matched = dbTitles.filter(t => t.titleName.toLowerCase().includes(input));
-    
     if (matched.length > 0) {
       box.style.display = 'block';
       matched.forEach(t => {
         let div = document.createElement('div');
         div.className = 'suggestion-item';
-        div.innerText = t.titleName;
+        div.innerText = `${t.titleName} (${t.publisher})`;
         div.onclick = function() {
           document.getElementById('titleId').value = t.titleId;
           document.getElementById('titleName').value = t.titleName;
@@ -396,6 +567,7 @@
     btn.innerText = 'กำลังบันทึก...';
 
     const formData = {
+      action: 'saveVolume',
       titleId: document.getElementById('titleId').value,
       titleName: document.getElementById('titleName').value,
       type: document.getElementById('typeVal').value,
@@ -413,20 +585,50 @@
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(formData)
       });
-      
       const result = await response.json();
       alert(result.message);
-      
-      const refresh = await fetch(API_URL + "?action=getTitles");
-      dbTitles = await refresh.json();
-      
-      closeModal();
+      closeAddModal();
+      await fetchAllData();
     } catch (error) {
       alert("เกิดข้อผิดพลาดในการบันทึก");
-      console.error(error);
     } finally {
       btn.disabled = false;
       btn.innerText = 'บันทึกเล่มนี้';
+    }
+  }
+
+  async function handleUpdateTitle(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnEditSubmit');
+    btn.disabled = true;
+    btn.innerText = 'กำลังอัปเดต...';
+
+    const updateData = {
+      action: 'updateTitle',
+      titleId: document.getElementById('editTitleId').value,
+      titleName: document.getElementById('editTitleName').value,
+      type: document.getElementById('editType').value,
+      publisher: document.getElementById('editPublisher').value,
+      latestVol: document.getElementById('editLatestVol').value,
+      readUpTo: document.getElementById('editReadUpTo').value,
+      status: document.getElementById('editStatus').value
+    };
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(updateData)
+      });
+      const result = await response.json();
+      alert(result.message);
+      closeEditModal();
+      await fetchAllData();
+    } catch (error) {
+      alert("เกิดข้อผิดพลาดในการอัปเดต");
+    } finally {
+      btn.disabled = false;
+      btn.innerText = 'อัปเดตข้อมูล';
     }
   }
 </script>
