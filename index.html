@@ -49,15 +49,10 @@
   .btn-header-action {
     width: 38px; height: 38px; border-radius: 12px; border: none; display: flex; align-items: center; justify-content: center; color: #FFF; cursor: pointer;
   }
-  .theme-lilac .btn-header-action {
-    background: linear-gradient(135deg, #D8B4E2, #F4ACB7); box-shadow: 0 4px 12px rgba(216, 180, 226, 0.45);
-  }
-  .theme-oat .btn-header-action {
-    background: linear-gradient(135deg, #E8A87C, #E2795B); box-shadow: 0 4px 12px rgba(232, 168, 124, 0.45);
-  }
+  .theme-lilac .btn-header-action { background: linear-gradient(135deg, #D8B4E2, #F4ACB7); box-shadow: 0 4px 12px rgba(216, 180, 226, 0.45); }
+  .theme-oat .btn-header-action { background: linear-gradient(135deg, #E8A87C, #E2795B); box-shadow: 0 4px 12px rgba(232, 168, 124, 0.45); }
 
   .section-label { font-size: 13px; font-weight: 600; color: #8C8294; margin: 0 20px 10px 20px; }
-  .theme-oat .section-label { color: #8C7F72; }
 
   /* Search & Filter Bar */
   .filter-section { padding: 0 20px 14px 20px; display: flex; flex-direction: column; gap: 10px; }
@@ -79,39 +74,56 @@
     font-size: 12px; font-family: inherit; color: #6D6256; outline: none; font-weight: 500; cursor: pointer;
   }
 
-  /* Book Cards */
-  .book-list { padding: 0 20px; display: flex; flex-direction: column; gap: 12px; }
+  /* Compact Book Cards */
+  .book-list { padding: 0 20px; display: flex; flex-direction: column; gap: 8px; }
   .book-card {
-    background: #FFF; border-radius: 18px; padding: 16px; border: 1px solid #F0EAF2;
+    background: #FFF; border-radius: 14px; padding: 12px 14px; border: 1px solid #F0EAF2;
     display: flex; justify-content: space-between; align-items: center; cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.15s ease, background-color 0.15s ease;
   }
   .theme-oat .book-card { border-color: #EFE8DE; }
-  .book-card:active { transform: scale(0.98); }
-  .book-info { flex: 1; margin-right: 12px; }
+  .book-card:active { transform: scale(0.99); background: #FAF7F2; }
   
-  .badge-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
-  .book-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 6px; }
+  .book-info { flex: 1; margin-right: 10px; }
+  .badge-row { display: flex; gap: 5px; align-items: center; margin-bottom: 3px; }
+  .book-badge { display: inline-block; font-size: 9px; font-weight: 600; padding: 1px 6px; border-radius: 4px; }
   .badge-manga { background: #F4EBF7; color: #A267B3; }
   .badge-novel { background: #E6F4F1; color: #4EA385; }
   .badge-complete { background: #EAE6DF; color: #73695F; }
   
-  .book-name { font-size: 15px; font-weight: 600; color: #3D3543; margin-bottom: 4px; line-height: 1.3; }
+  .book-name { font-size: 14px; font-weight: 600; color: #3D3543; margin-bottom: 2px; line-height: 1.25; }
   .theme-oat .book-name { color: #3C3630; }
-  .book-sub { font-size: 12px; color: #8C8294; }
+  .book-sub { font-size: 11px; color: #8C8294; }
   .theme-oat .book-sub { color: #8C7F72; }
   
-  .book-vols {
-    text-align: right; background: #FAF7FA; padding: 6px 12px; border-radius: 12px; border: 1px solid #F0EAF2; min-width: 75px;
+  .book-action-col { display: flex; align-items: center; gap: 8px; }
+  .book-vols-compact {
+    text-align: right; background: #FAF7FA; padding: 4px 8px; border-radius: 8px; border: 1px solid #F0EAF2; min-width: 52px;
   }
-  .theme-oat .book-vols { background: #FDFBF8; border-color: #EFE8DE; }
-  .vol-num { font-size: 16px; font-weight: 700; color: #A267B3; font-family: 'Plus Jakarta Sans', sans-serif; }
-  .theme-oat .vol-num { color: #D97736; }
-  .vol-label { font-size: 10px; color: #8C8294; display: block; }
+  .theme-oat .book-vols-compact { background: #FDFBF8; border-color: #EFE8DE; }
+  .vol-num-compact { font-size: 14px; font-weight: 700; color: #A267B3; font-family: 'Plus Jakarta Sans', sans-serif; display: block; }
+  .theme-oat .vol-num-compact { color: #D97736; }
+  .vol-label-compact { font-size: 9px; color: #8C8294; display: block; }
 
-  .empty-state { text-align: center; padding: 40px 20px; color: #8C8294; font-size: 14px; }
+  .btn-edit-icon {
+    width: 32px; height: 32px; border-radius: 8px; border: 1px solid #EFE8DE; background: #FFF;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; color: #8C7F72;
+    transition: all 0.15s;
+  }
+  .btn-edit-icon:hover { border-color: #D97736; color: #D97736; }
 
-  /* ================= DASHBOARD SYMMETRIC STYLES ================= */
+  /* Pagination Bar */
+  .pagination-container {
+    padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .btn-page {
+    height: 36px; padding: 0 14px; border-radius: 10px; border: 1px solid #EFE8DE; background: #FFF;
+    font-size: 12px; font-weight: 600; color: #6D6256; cursor: pointer; display: flex; align-items: center; gap: 4px;
+  }
+  .btn-page:disabled { opacity: 0.4; cursor: not-allowed; }
+  .page-info { font-size: 12px; font-weight: 600; color: #8C7F72; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  /* Dashboard Styles */
   .dash-container { padding: 0 20px; display: flex; flex-direction: column; gap: 14px; }
   .dash-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
@@ -139,9 +151,7 @@
     display: flex; justify-content: space-between; align-items: center;
   }
 
-  .breakdown-card {
-    background: #FFF; border-radius: 18px; padding: 18px 16px; border: 1px solid #E2EFEA;
-  }
+  .breakdown-card { background: #FFF; border-radius: 18px; padding: 18px 16px; border: 1px solid #E2EFEA; }
   .breakdown-title { font-size: 14px; font-weight: 600; color: #2D3D37; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
   .breakdown-item { margin-bottom: 12px; }
   .breakdown-item:last-child { margin-bottom: 0; }
@@ -219,7 +229,14 @@
   }
   .btn-save:disabled { opacity: 0.7; cursor: not-allowed; }
 
-  /* Bottom Navigation Dock */
+  /* View Modal Details */
+  .view-detail-card { background: #FDFBF8; border-radius: 16px; padding: 16px; border: 1px solid #EFE8DE; margin-bottom: 14px; }
+  .view-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; }
+  .view-row:last-child { margin-bottom: 0; }
+  .view-label { color: #8C7F72; }
+  .view-val { font-weight: 600; color: #3C3630; }
+
+  /* Bottom Dock */
   .bottom-dock {
     position: absolute; bottom: 0; left: 0; right: 0; height: 72px;
     background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px);
@@ -234,9 +251,50 @@
   .nav-tab.active-lilac { color: #A267B3; }
   .nav-tab.active-oat { color: #D97736; }
   .nav-tab.active-mint { color: #4EA385; }
+
+  /* ================= LOGIN OVERLAY ================= */
+  .login-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: #FAF7F5; z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px;
+  }
+  .login-box {
+    width: 100%; max-width: 340px; background: #FFF; border-radius: 28px; padding: 32px 24px;
+    box-shadow: 0 12px 36px rgba(162, 103, 179, 0.12); border: 1px solid #F0EAF2; text-align: center;
+  }
+  .login-icon {
+    width: 54px; height: 54px; border-radius: 16px; background: #F4EBF7; color: #A267B3;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;
+  }
+  .login-title { font-size: 20px; font-weight: 700; color: #3D3543; margin-bottom: 6px; }
+  .login-sub { font-size: 12px; color: #8C8294; margin-bottom: 24px; }
+  .login-input {
+    width: 100%; height: 46px; border-radius: 14px; border: 1.5px solid #F0EAF2; padding: 0 14px;
+    font-size: 14px; font-family: inherit; color: #3D3543; outline: none; margin-bottom: 12px; text-align: center;
+  }
+  .login-input:focus { border-color: #A267B3; }
+  .btn-login {
+    width: 100%; height: 48px; border-radius: 14px; border: none; background: linear-gradient(135deg, #A267B3, #D87080);
+    color: #FFF; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 14px rgba(162, 103, 179, 0.3);
+  }
 </style>
 </head>
 <body>
+
+<!-- ================= LOGIN OVERLAY ================= -->
+<div class="login-overlay" id="loginScreen">
+  <div class="login-box">
+    <div class="login-icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+    </div>
+    <div class="login-title">SparkleDex</div>
+    <div class="login-sub">กรุณายืนยันตัวตนเพื่อเข้าใช้งาน</div>
+    <form onsubmit="handleLogin(event)">
+      <input type="text" id="loginUser" class="login-input" placeholder="ชื่อผู้ใช้" required>
+      <input type="password" id="loginPass" class="login-input" placeholder="รหัสผ่าน" required>
+      <button type="submit" class="btn-login">เข้าสู่ระบบ</button>
+    </form>
+  </div>
+</div>
 
 <div class="mobile-container" id="appContainer">
 
@@ -267,28 +325,42 @@
     <div class="filter-section">
       <div class="search-input-wrap">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" id="libSearchInput" class="search-bar" placeholder="ค้นหาชื่อเรื่อง หรือสำนักพิมพ์..." oninput="renderLibraryList()">
+        <input type="text" id="libSearchInput" class="search-bar" placeholder="ค้นหาชื่อเรื่อง หรือสำนักพิมพ์..." oninput="onFilterChange()">
       </div>
       
       <div class="filter-pills">
-        <select id="filterType" class="pill-select" onchange="renderLibraryList()">
+        <select id="filterType" class="pill-select" onchange="onFilterChange()">
           <option value="all">ทุกประเภท</option>
           <option value="มังงะ">มังงะ</option>
           <option value="นิยาย">นิยาย</option>
         </select>
-        <select id="filterStatus" class="pill-select" onchange="renderLibraryList()">
+        <select id="filterStatus" class="pill-select" onchange="onFilterChange()">
           <option value="all">ทุกสถานะ</option>
           <option value="ยังไม่จบ">ยังไม่จบ</option>
           <option value="จบแล้ว">จบแล้ว</option>
         </select>
-        <select id="filterPublisher" class="pill-select" onchange="renderLibraryList()">
+        <select id="filterPublisher" class="pill-select" onchange="onFilterChange()">
           <option value="all">ทุกสำนักพิมพ์</option>
         </select>
       </div>
     </div>
 
+    <!-- Compact List Container -->
     <div class="book-list" id="libraryCardsContainer">
       <div class="empty-state">กำลังจัดเรียงคลังหนังสือ...</div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-container" id="paginationBar">
+      <button class="btn-page" id="btnPrevPage" onclick="changePage(-1)">
+        <svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        ก่อนหน้า
+      </button>
+      <span class="page-info" id="pageIndicator">หน้า 1 / 1</span>
+      <button class="btn-page" id="btnNextPage" onclick="changePage(1)">
+        ถัดไป
+        <svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
     </div>
   </div>
 
@@ -300,7 +372,7 @@
 
     <div class="dash-container">
       
-      <!-- 1. Hero Symmetric Cards (ยอดสะสมเงิน VS จำนวนเล่มรวม) -->
+      <!-- 1. Hero Symmetric Cards -->
       <div class="dash-grid-2">
         <div class="stat-hero-card hero-spend">
           <div class="hero-top-row">
@@ -319,7 +391,7 @@
         </div>
       </div>
 
-      <!-- 2. Grid แยกประเภทหนังสือ (มังงะ VS นิยาย) -->
+      <!-- 2. Grid แยกประเภทหนังสือ -->
       <div class="dash-grid-2">
         <div class="stat-card">
           <span class="stat-label">มังงะ (Manga)</span>
@@ -333,7 +405,7 @@
         </div>
       </div>
 
-      <!-- 3. Grid สถานะการอ่าน (อ่านแล้ว VS ดองไว้) -->
+      <!-- 3. Grid สถานะการอ่าน -->
       <div class="dash-grid-2">
         <div class="stat-card">
           <span class="stat-label">อ่านไปแล้ว</span>
@@ -347,7 +419,7 @@
         </div>
       </div>
 
-      <!-- 4. สรุปจำนวนเรื่องและสถานะจบ -->
+      <!-- 4. สรุปจำนวนเรื่อง -->
       <div class="stat-wide-card">
         <div>
           <span class="stat-label" style="display:block;">จำนวนเรื่องทั้งหมด</span>
@@ -473,6 +545,29 @@
     </div>
   </div>
 
+  <!-- ================= MODAL: VIEW DETAILS ================= -->
+  <div class="modal-overlay" id="viewModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="viewTitleName">รายละเอียดหนังสือ</h2>
+        <button class="btn-close" onclick="closeViewModal()">
+          <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="view-detail-card">
+        <div class="view-row"><span class="view-label">รหัสเรื่อง:</span><span class="view-val" id="viewTitleId">-</span></div>
+        <div class="view-row"><span class="view-label">ประเภท:</span><span class="view-val" id="viewType">-</span></div>
+        <div class="view-row"><span class="view-label">สำนักพิมพ์:</span><span class="view-val" id="viewPublisher">-</span></div>
+        <div class="view-row"><span class="view-label">มีสะสมถึงเล่ม:</span><span class="view-val" id="viewLatestVol">-</span></div>
+        <div class="view-row"><span class="view-label">อ่านจบถึงเล่ม:</span><span class="view-val" id="viewReadUpTo">-</span></div>
+        <div class="view-row"><span class="view-label">สถานะเรื่อง:</span><span class="view-val" id="viewStatus">-</span></div>
+      </div>
+
+      <button type="button" class="btn-save" id="btnOpenEditFromView" style="background: linear-gradient(135deg, #D97736, #E2795B);">แก้ไขข้อมูลเรื่องนี้</button>
+    </div>
+  </div>
+
   <!-- ================= MODAL: EDIT TITLE ================= -->
   <div class="modal-overlay" id="editModal">
     <div class="modal-content">
@@ -531,26 +626,62 @@
 </div>
 
 <script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbzC7I97wis3MRFahrjkOoCM-CL6mMuAQG9eiJVJ2ZS_ZrcElq0lBjNCa6UZpWAh-DqD/exec";
+  // ⚠️ ตรวจสอบ URL API ของคุณหนู
+  const API_URL = "https://script.google.com/macros/s/AKfycbxOyJzq2lRRwZVQnK6mtptN4ndVJG84cz25QspFtl5qRN84S06rKX1hV4MVj9WCcrfod/exec";
+  
+  // ตั้งค่ารหัสผ่านเข้าใช้งาน
+  const AUTH_CREDENTIALS = { user: "sparkle", pass: "lunafreya#6913" };
+  
   let dbTitles = [];
+  let currentFilteredList = [];
+  let currentPage = 1;
+  const PAGE_SIZE = 10;
+  let currentlySelectedTitle = null;
 
   window.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
+  });
+
+  // ================= AUTHENTICATION =================
+  function checkAuth() {
+    const isAuth = localStorage.getItem("sparkle_auth");
+    if (isAuth === "true") {
+      document.getElementById("loginScreen").style.display = "none";
+      initApp();
+    } else {
+      document.getElementById("loginScreen").style.display = "flex";
+    }
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    const u = document.getElementById("loginUser").value.trim();
+    const p = document.getElementById("loginPass").value.trim();
+
+    if (u === AUTH_CREDENTIALS.user && p === AUTH_CREDENTIALS.pass) {
+      localStorage.setItem("sparkle_auth", "true");
+      document.getElementById("loginScreen").style.display = "none";
+      initApp();
+    } else {
+      alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องครับ");
+    }
+  }
+
+  function initApp() {
     const pDate = document.getElementById('purchaseDate');
     if (pDate) pDate.value = new Date().toISOString().split('T')[0];
     fetchAllData();
-  });
+  }
 
+  // ================= DATA FETCHING =================
   async function fetchAllData() {
     try {
-      const response = await fetch(API_URL + "?action=getTitles", {
-        method: "GET",
-        redirect: "follow"
-      });
+      const response = await fetch(API_URL + "?action=getTitles", { method: "GET", redirect: "follow" });
       dbTitles = await response.json();
       
       renderRecentList();
       populatePublisherFilter();
-      renderLibraryList();
+      onFilterChange();
     } catch (error) {
       console.error("Fetch error:", error);
       document.getElementById('recentCardsContainer').innerHTML = '<div class="empty-state">โหลดข้อมูลไม่สำเร็จ ลองรีเฟรชอีกครั้งครับ</div>';
@@ -566,7 +697,6 @@
       document.getElementById('dashTotalPrice').innerText = '฿' + Number(data.totalPrice || 0).toLocaleString();
       document.getElementById('dashTotalVols').innerHTML = `${totalVols} <span style="font-size: 14px; font-weight: normal;">เล่ม</span>`;
 
-      // ประเภท
       const mangaCount = data.mangaVolCount || 0;
       const novelCount = data.novelVolCount || 0;
       document.getElementById('dashMangaVols').innerText = mangaCount;
@@ -574,15 +704,12 @@
       document.getElementById('dashMangaRatio').innerText = totalVols > 0 ? `${Math.round((mangaCount / totalVols) * 100)}% ของทั้งหมด` : '0%';
       document.getElementById('dashNovelRatio').innerText = totalVols > 0 ? `${Math.round((novelCount / totalVols) * 100)}% ของทั้งหมด` : '0%';
 
-      // สถานะอ่าน
       document.getElementById('dashTotalRead').innerText = data.totalRead || 0;
       document.getElementById('dashTotalUnread').innerText = data.totalUnread || 0;
 
-      // เรื่อง
       document.getElementById('dashTotalTitles').innerText = `${data.totalTitles || 0} เรื่อง`;
       document.getElementById('dashCompletedTitles').innerText = `${data.totalCompletedTitles || 0} เรื่อง`;
 
-      // Render สำนักพิมพ์ (จำนวนเล่ม)
       const pubVolContainer = document.getElementById('pubVolumeList');
       pubVolContainer.innerHTML = '';
       const maxVol = (data.publishers && data.publishers.length > 0) ? data.publishers[0].volumeCount : 1;
@@ -603,7 +730,6 @@
         pubVolContainer.appendChild(item);
       });
 
-      // Render สำนักพิมพ์ (ยอดเงิน)
       const pubSpendContainer = document.getElementById('pubSpendList');
       pubSpendContainer.innerHTML = '';
       const maxSpend = Math.max(...(data.publishers || []).map(p => p.totalSpent), 1);
@@ -637,7 +763,7 @@
       container.innerHTML = '<div class="empty-state">ยังไม่มีรายการหนังสือ กดปุ่ม + เพื่อเพิ่มเล่มแรก</div>';
       return;
     }
-    recent.forEach(t => container.appendChild(createBookCard(t)));
+    recent.forEach(t => container.appendChild(createCompactBookCard(t)));
   }
 
   function populatePublisherFilter() {
@@ -654,16 +780,14 @@
     if (publishers.includes(current)) select.value = current;
   }
 
-  function renderLibraryList() {
+  // ================= FILTER & PAGINATION =================
+  function onFilterChange() {
     const query = document.getElementById('libSearchInput').value.trim().toLowerCase();
     const typeFilter = document.getElementById('filterType').value;
     const statusFilter = document.getElementById('filterStatus').value;
     const pubFilter = document.getElementById('filterPublisher').value;
 
-    const container = document.getElementById('libraryCardsContainer');
-    container.innerHTML = '';
-
-    const filtered = dbTitles.filter(t => {
+    currentFilteredList = dbTitles.filter(t => {
       const matchQuery = t.titleName.toLowerCase().includes(query) || (t.publisher && t.publisher.toLowerCase().includes(query));
       const matchType = (typeFilter === 'all') || (t.type === typeFilter);
       const matchStatus = (statusFilter === 'all') || (t.status === statusFilter);
@@ -671,15 +795,41 @@
       return matchQuery && matchType && matchStatus && matchPub;
     });
 
-    if (filtered.length === 0) {
-      container.innerHTML = '<div class="empty-state">ไม่พบข้อมูลตามเงื่อนไขที่เลือก</div>';
+    currentPage = 1;
+    renderLibraryPage();
+  }
+
+  function renderLibraryPage() {
+    const container = document.getElementById('libraryCardsContainer');
+    container.innerHTML = '';
+
+    if (currentFilteredList.length === 0) {
+      container.innerHTML = '<div class="empty-state">ไม่พบข้อมูลหนังสือตามเงื่อนไข</div>';
+      document.getElementById('paginationBar').style.display = 'none';
       return;
     }
 
-    filtered.forEach(t => container.appendChild(createBookCard(t)));
+    document.getElementById('paginationBar').style.display = 'flex';
+    const totalPages = Math.ceil(currentFilteredList.length / PAGE_SIZE) || 1;
+    const startIndex = (currentPage - 1) * PAGE_SIZE;
+    const pageItems = currentFilteredList.slice(startIndex, startIndex + PAGE_SIZE);
+
+    pageItems.forEach(t => container.appendChild(createCompactBookCard(t)));
+
+    document.getElementById('pageIndicator').innerText = `หน้า ${currentPage} / ${totalPages}`;
+    document.getElementById('btnPrevPage').disabled = (currentPage <= 1);
+    document.getElementById('btnNextPage').disabled = (currentPage >= totalPages);
   }
 
-  function createBookCard(t) {
+  function changePage(delta) {
+    const totalPages = Math.ceil(currentFilteredList.length / PAGE_SIZE) || 1;
+    if (currentPage + delta >= 1 && currentPage + delta <= totalPages) {
+      currentPage += delta;
+      renderLibraryPage();
+    }
+  }
+
+  function createCompactBookCard(t) {
     const card = document.createElement('div');
     card.className = 'book-card';
     const badgeTypeClass = t.type === 'นิยาย' ? 'badge-novel' : 'badge-manga';
@@ -692,17 +842,37 @@
           ${isComplete ? '<span class="book-badge badge-complete">จบแล้ว</span>' : ''}
         </div>
         <div class="book-name">${t.titleName}</div>
-        <div class="book-sub">${t.publisher} • อ่านแล้ว: เล่ม ${t.readUpTo || 0}</div>
+        <div class="book-sub">${t.publisher} • อ่านแล้ว: ${t.readUpTo || 0}/${t.latestVol || 0}</div>
       </div>
-      <div class="book-vols">
-        <span class="vol-num">${t.latestVol}</span>
-        <span class="vol-label">เล่มล่าสุด</span>
+      <div class="book-action-col">
+        <div class="book-vols-compact">
+          <span class="vol-num-compact">${t.latestVol}</span>
+          <span class="vol-label-compact">เล่มล่าสุด</span>
+        </div>
+        <button class="btn-edit-icon" title="แก้ไข">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        </button>
       </div>
     `;
-    card.onclick = () => openEditModal(t);
+
+    // กดที่การ์ดเพื่อดูรายละเอียด
+    card.onclick = (e) => {
+      if (!e.target.closest('.btn-edit-icon')) {
+        openViewModal(t);
+      }
+    };
+
+    // กดปุ่มไอคอนเพื่อแก้ไข
+    const editBtn = card.querySelector('.btn-edit-icon');
+    editBtn.onclick = (e) => {
+      e.stopPropagation();
+      openEditModal(t);
+    };
+
     return card;
   }
 
+  // ================= TAB NAVIGATION =================
   function switchTab(target) {
     const qS = document.getElementById('quickScreen');
     const lS = document.getElementById('libScreen');
@@ -723,7 +893,7 @@
       lS.classList.add('active');
       tL.className = 'nav-tab active-oat';
       app.style.backgroundColor = '#FAF6F0';
-      renderLibraryList();
+      onFilterChange();
     } else {
       dS.classList.add('active');
       tD.className = 'nav-tab active-mint';
@@ -732,6 +902,7 @@
     }
   }
 
+  // ================= MODAL CONTROLS =================
   function openAddModal() { document.getElementById('addModal').classList.add('show'); }
   function closeAddModal() {
     document.getElementById('addModal').classList.remove('show');
@@ -741,6 +912,26 @@
     document.getElementById('suggestionsBox').style.display = 'none';
     clearChips();
   }
+
+  function openViewModal(item) {
+    currentlySelectedTitle = item;
+    document.getElementById('viewTitleName').innerText = item.titleName;
+    document.getElementById('viewTitleId').innerText = item.titleId;
+    document.getElementById('viewType').innerText = item.type;
+    document.getElementById('viewPublisher').innerText = item.publisher;
+    document.getElementById('viewLatestVol').innerText = `เล่ม ${item.latestVol || 0}`;
+    document.getElementById('viewReadUpTo').innerText = `เล่ม ${item.readUpTo || 0}`;
+    document.getElementById('viewStatus').innerText = item.status || 'ยังไม่จบ';
+
+    document.getElementById('btnOpenEditFromView').onclick = () => {
+      closeViewModal();
+      openEditModal(item);
+    };
+
+    document.getElementById('viewModal').classList.add('show');
+  }
+
+  function closeViewModal() { document.getElementById('viewModal').classList.remove('show'); }
 
   function openEditModal(item) {
     document.getElementById('editTitleId').value = item.titleId;
@@ -818,6 +1009,7 @@
     if(e.target.id !== 'titleName') document.getElementById('suggestionsBox').style.display = 'none';
   });
 
+  // ================= SAVE & UPDATE API =================
   async function handleSave(e) {
     e.preventDefault();
     const btn = document.getElementById('btnSubmit');
