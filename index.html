@@ -10,13 +10,13 @@
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
   body {
-  background-color: #E6E1DA;
-  font-family: 'Mitr', 'Plus Jakarta Sans', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-}
+    background-color: #E6E1DA;
+    font-family: 'Mitr', 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
 
   .mobile-container {
     width: 100%;
@@ -74,43 +74,41 @@
     font-size: 12px; font-family: inherit; color: #6D6256; outline: none; font-weight: 500; cursor: pointer;
   }
 
-  /* Compact Book Cards */
-  .book-list { padding: 0 20px; display: flex; flex-direction: column; gap: 8px; }
-  .book-card {
-    background: #FFF; border-radius: 14px; padding: 12px 14px; border: 1px solid #F0EAF2;
+  /* Ultra-Compact Minimal Book List */
+  .book-list { padding: 0 20px; display: flex; flex-direction: column; gap: 6px; }
+  
+  .book-card-mini {
+    background: #FFF; border-radius: 14px; padding: 11px 14px; border: 1px solid #F0EAF2;
     display: flex; justify-content: space-between; align-items: center; cursor: pointer;
-    transition: transform 0.15s ease, background-color 0.15s ease;
+    transition: all 0.15s ease;
   }
-  .theme-oat .book-card { border-color: #EFE8DE; }
-  .book-card:active { transform: scale(0.99); background: #FAF7F2; }
-  
-  .book-info { flex: 1; margin-right: 10px; }
-  .badge-row { display: flex; gap: 5px; align-items: center; margin-bottom: 3px; }
-  .book-badge { display: inline-block; font-size: 9px; font-weight: 600; padding: 1px 6px; border-radius: 4px; }
-  .badge-manga { background: #F4EBF7; color: #A267B3; }
-  .badge-novel { background: #E6F4F1; color: #4EA385; }
-  .badge-complete { background: #EAE6DF; color: #73695F; }
-  
-  .book-name { font-size: 14px; font-weight: 600; color: #3D3543; margin-bottom: 2px; line-height: 1.25; }
-  .theme-oat .book-name { color: #3C3630; }
-  .book-sub { font-size: 11px; color: #8C8294; }
-  .theme-oat .book-sub { color: #8C7F72; }
-  
-  .book-action-col { display: flex; align-items: center; gap: 8px; }
-  .book-vols-compact {
-    text-align: right; background: #FAF7FA; padding: 4px 8px; border-radius: 8px; border: 1px solid #F0EAF2; min-width: 52px;
-  }
-  .theme-oat .book-vols-compact { background: #FDFBF8; border-color: #EFE8DE; }
-  .vol-num-compact { font-size: 14px; font-weight: 700; color: #A267B3; font-family: 'Plus Jakarta Sans', sans-serif; display: block; }
-  .theme-oat .vol-num-compact { color: #D97736; }
-  .vol-label-compact { font-size: 9px; color: #8C8294; display: block; }
+  .theme-oat .book-card-mini { border-color: #EFE8DE; }
+  .book-card-mini:active { transform: scale(0.985); background: #FAF7F2; }
 
-  .btn-edit-icon {
-    width: 32px; height: 32px; border-radius: 8px; border: 1px solid #EFE8DE; background: #FFF;
-    display: flex; align-items: center; justify-content: center; cursor: pointer; color: #8C7F72;
-    transition: all 0.15s;
+  .mini-title-wrap {
+    display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; margin-right: 8px;
   }
-  .btn-edit-icon:hover { border-color: #D97736; color: #D97736; }
+  .mini-dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+  }
+  .dot-manga { background-color: #A267B3; }
+  .dot-novel { background-color: #4EA385; }
+
+  .mini-name {
+    font-size: 13.5px; font-weight: 500; color: #3D3543;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .theme-oat .mini-name { color: #3C3630; }
+
+  .mini-vol-badge {
+    background: #F4EBF7; padding: 4px 10px; border-radius: 8px;
+    font-size: 12px; font-weight: 600; color: #A267B3;
+    font-family: 'Plus Jakarta Sans', sans-serif; flex-shrink: 0; white-space: nowrap;
+  }
+  .theme-oat .mini-vol-badge { background: #FBF0E6; color: #D97736; }
+  .mini-vol-badge.is-completed { background: #EAE6DF; color: #73695F; }
+
+  .empty-state { text-align: center; color: #8C8294; font-size: 13px; padding: 30px 0; }
 
   /* Pagination Bar */
   .pagination-container {
@@ -307,7 +305,7 @@
       </button>
     </header>
 
-    <div class="section-label">รายการที่อัปเดตล่าสุด</div>
+    <div class="section-label">รายการที่อัปเดตล่าสุด (4 เล่ม)</div>
     <div class="book-list" id="recentCardsContainer">
       <div class="empty-state">กำลังโหลดข้อมูล...</div>
     </div>
@@ -345,12 +343,12 @@
       </div>
     </div>
 
-    <!-- Compact List Container -->
+    <!-- Ultra-Compact List Container -->
     <div class="book-list" id="libraryCardsContainer">
       <div class="empty-state">กำลังจัดเรียงคลังหนังสือ...</div>
     </div>
 
-    <!-- Pagination Controls -->
+    <!-- Pagination Controls (4 รายการต่อหน้า) -->
     <div class="pagination-container" id="paginationBar">
       <button class="btn-page" id="btnPrevPage" onclick="changePage(-1)">
         <svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -626,7 +624,7 @@
 </div>
 
 <script>
-  // ⚠️ ตรวจสอบ URL API ของคุณหนู
+  // ⚠️ URL API Apps Script
   const API_URL = "https://script.google.com/macros/s/AKfycbzC7I97wis3MRFahrjkOoCM-CL6mMuAQG9eiJVJ2ZS_ZrcElq0lBjNCa6UZpWAh-DqD/exec";
   
   // ตั้งค่ารหัสผ่านเข้าใช้งาน
@@ -635,20 +633,26 @@
   let dbTitles = [];
   let currentFilteredList = [];
   let currentPage = 1;
-  const PAGE_SIZE = 10;
+  const PAGE_SIZE = 4; // แสดงหน้าละ 4 รายการ
   let currentlySelectedTitle = null;
 
   window.addEventListener('DOMContentLoaded', () => {
     checkAuth();
   });
 
-  // ================= AUTHENTICATION =================
+  // ================= AUTHENTICATION (หมดอายุ 12 ชม.) =================
   function checkAuth() {
     const isAuth = localStorage.getItem("sparkle_auth");
-    if (isAuth === "true") {
+    const expiry = localStorage.getItem("sparkle_auth_expiry");
+    const now = Date.now();
+
+    // ตรวจสอบว่าเคยล็อกอิน และเวลาปัจจุบันยังไม่เกิน 12 ชม.
+    if (isAuth === "true" && expiry && now < parseInt(expiry, 10)) {
       document.getElementById("loginScreen").style.display = "none";
       initApp();
     } else {
+      localStorage.removeItem("sparkle_auth");
+      localStorage.removeItem("sparkle_auth_expiry");
       document.getElementById("loginScreen").style.display = "flex";
     }
   }
@@ -659,7 +663,12 @@
     const p = document.getElementById("loginPass").value.trim();
 
     if (u === AUTH_CREDENTIALS.user && p === AUTH_CREDENTIALS.pass) {
+      const TWELVE_HOURS_MS = 12 * 60 * 60 * 1000;
+      const expiryTime = Date.now() + TWELVE_HOURS_MS;
+
       localStorage.setItem("sparkle_auth", "true");
+      localStorage.setItem("sparkle_auth_expiry", expiryTime.toString());
+
       document.getElementById("loginScreen").style.display = "none";
       initApp();
     } else {
@@ -755,10 +764,11 @@
     }
   }
 
+  // แสดง 4 รายการล่าสุดในแถบบันทึกด่วน
   function renderRecentList() {
     const container = document.getElementById('recentCardsContainer');
     container.innerHTML = '';
-    const recent = dbTitles.slice(-5).reverse();
+    const recent = dbTitles.slice(-4).reverse();
     if (recent.length === 0) {
       container.innerHTML = '<div class="empty-state">ยังไม่มีรายการหนังสือ กดปุ่ม + เพื่อเพิ่มเล่มแรก</div>';
       return;
@@ -780,7 +790,7 @@
     if (publishers.includes(current)) select.value = current;
   }
 
-  // ================= FILTER & PAGINATION =================
+  // ================= FILTER & PAGINATION (4 รายการ/หน้า) =================
   function onFilterChange() {
     const query = document.getElementById('libSearchInput').value.trim().toLowerCase();
     const typeFilter = document.getElementById('filterType').value;
@@ -829,44 +839,25 @@
     }
   }
 
+  // Ultra-Compact Card Generator
   function createCompactBookCard(t) {
     const card = document.createElement('div');
-    card.className = 'book-card';
-    const badgeTypeClass = t.type === 'นิยาย' ? 'badge-novel' : 'badge-manga';
+    card.className = 'book-card-mini';
+    const dotClass = t.type === 'นิยาย' ? 'dot-novel' : 'dot-manga';
     const isComplete = t.status === 'จบแล้ว';
 
     card.innerHTML = `
-      <div class="book-info">
-        <div class="badge-row">
-          <span class="book-badge ${badgeTypeClass}">${t.type}</span>
-          ${isComplete ? '<span class="book-badge badge-complete">จบแล้ว</span>' : ''}
-        </div>
-        <div class="book-name">${t.titleName}</div>
-        <div class="book-sub">${t.publisher} • อ่านแล้ว: ${t.readUpTo || 0}/${t.latestVol || 0}</div>
+      <div class="mini-title-wrap">
+        <span class="mini-dot ${dotClass}" title="${t.type}"></span>
+        <span class="mini-name">${t.titleName}</span>
       </div>
-      <div class="book-action-col">
-        <div class="book-vols-compact">
-          <span class="vol-num-compact">${t.latestVol}</span>
-          <span class="vol-label-compact">เล่มล่าสุด</span>
-        </div>
-        <button class="btn-edit-icon" title="แก้ไข">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-        </button>
+      <div class="mini-vol-badge ${isComplete ? 'is-completed' : ''}">
+        ${t.latestVol} เล่ม ${isComplete ? '✓' : ''}
       </div>
     `;
 
-    // กดที่การ์ดเพื่อดูรายละเอียด
-    card.onclick = (e) => {
-      if (!e.target.closest('.btn-edit-icon')) {
-        openViewModal(t);
-      }
-    };
-
-    // กดปุ่มไอคอนเพื่อแก้ไข
-    const editBtn = card.querySelector('.btn-edit-icon');
-    editBtn.onclick = (e) => {
-      e.stopPropagation();
-      openEditModal(t);
+    card.onclick = () => {
+      openViewModal(t);
     };
 
     return card;
