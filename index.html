@@ -15,18 +15,31 @@
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
   :root {
+    /* พื้นหลังหลักและกล่องข้อความ */
     --bg-main: #FAF7F5;
     --card-bg: #FFFFFF;
+    
+    /* สีหลัก */
     --primary-lilac: #D8B4E2;
     --primary-rose: #F4ACB7;
+    
+    /* สีข้อความ */
     --text-main: #4A4453;
     --text-sub: #8C8294;
     --border-color: #F0EAF2;
     
-    --tag-manga-bg: #E3F6EF;
-    --tag-manga-txt: #2E7D63;
-    --tag-novel-bg: #FFE5EC;
-    --tag-novel-txt: #D85A75;
+    /* สีรอง (Secondary / Tag ประเภท) */
+    --tag-manga-bg: #B8E0D2;
+    --tag-manga-txt: #2C5F4D;
+    
+    --tag-novel-bg: #FFCAD4;
+    --tag-novel-txt: #A8425B;
+    
+    --tag-read-bg: #C5E1A5;
+    --tag-read-txt: #3E6B1D;
+    
+    --tag-unread-bg: #FFE5B4;
+    --tag-unread-txt: #B37100;
   }
 
   body {
@@ -58,7 +71,8 @@
   .header { padding: 22px 20px 14px 20px; display: flex; justify-content: space-between; align-items: center; }
   .logo-title {
     font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #B583C7, #E58C99); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background: linear-gradient(135deg, var(--primary-lilac), var(--primary-rose));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
 
   .btn-header-action {
@@ -84,12 +98,12 @@
   .search-bar {
     width: 100%; height: 44px; border-radius: 14px; border: 1.5px solid var(--border-color); background: var(--card-bg);
     padding: 0 44px 0 40px; font-size: 13.5px; font-family: inherit; color: var(--text-main); outline: none; transition: border-color 0.2s;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
   }
   .search-bar:focus { border-color: var(--primary-lilac); }
   .btn-scan-barcode {
     position: absolute; right: 8px; width: 30px; height: 30px; border-radius: 8px; border: none;
-    background: #F4EBF7; color: #9A5BAE; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    background: #F4EBF7; color: var(--primary-lilac); display: flex; align-items: center; justify-content: center; cursor: pointer;
   }
 
   .filter-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; -ms-overflow-style: none; scrollbar-width: none; }
@@ -97,6 +111,7 @@
   .pill-select {
     height: 32px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--card-bg); padding: 0 10px;
     font-size: 12px; font-family: inherit; color: var(--text-main); outline: none; font-weight: 500; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
   }
 
   /* Book Cards */
@@ -109,22 +124,24 @@
   .book-card-item:active { transform: scale(0.985); }
   .card-top-row { display: flex; justify-content: space-between; align-items: center; }
   .card-title-group { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; margin-right: 8px; }
+  
   .tag-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 6px; flex-shrink: 0; }
   .tag-manga { background: var(--tag-manga-bg); color: var(--tag-manga-txt); }
   .tag-novel { background: var(--tag-novel-bg); color: var(--tag-novel-txt); }
+  
   .book-name-text { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   .card-action-group { display: flex; align-items: center; gap: 6px; }
   .vol-chip { background: #F4EBF7; padding: 3px 8px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #9A5BAE; font-family: 'Plus Jakarta Sans', sans-serif; }
   .btn-quick-plus {
-    height: 26px; min-width: 26px; border-radius: 8px; border: none; background: linear-gradient(135deg, #D8B4E2, #F4ACB7);
+    height: 26px; min-width: 26px; border-radius: 8px; border: none; background: linear-gradient(135deg, var(--primary-lilac), var(--primary-rose));
     color: #FFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer;
     box-shadow: 0 2px 6px rgba(216, 180, 226, 0.5); padding: 0 6px;
   }
 
   .card-progress-row { display: flex; align-items: center; gap: 8px; }
-  .progress-track { flex: 1; height: 5px; background: #F0EAF2; border-radius: 3px; overflow: hidden; }
-  .progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #D8B4E2, #C5E1A5); }
+  .progress-track { flex: 1; height: 5px; background: var(--border-color); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--primary-lilac), var(--tag-read-bg)); }
   .progress-text { font-size: 10.5px; color: var(--text-sub); font-family: 'Plus Jakarta Sans', sans-serif; white-space: nowrap; }
 
   /* Pagination */
@@ -132,29 +149,45 @@
   .btn-page {
     height: 36px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--card-bg);
     font-size: 12px; font-weight: 600; color: var(--text-main); cursor: pointer; display: flex; align-items: center; gap: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
   }
   .btn-page:disabled { opacity: 0.4; cursor: not-allowed; }
   .page-info { font-size: 12px; font-weight: 600; color: var(--text-sub); font-family: 'Plus Jakarta Sans', sans-serif; }
 
-  /* Dashboard Styles */
+  /* Dashboard Styles (กู้กลับมาครบถ้วน) */
   .dash-container { padding: 0 20px; display: flex; flex-direction: column; gap: 14px; }
   .dash-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .stat-hero-card { border-radius: 20px; padding: 18px 16px; color: #FFF; display: flex; flex-direction: column; justify-content: space-between; min-height: 104px; box-shadow: 0 8px 20px rgba(216, 180, 226, 0.25); }
-  .hero-spend { background: linear-gradient(135deg, #B583C7, #D898A4); }
-  .hero-count { background: linear-gradient(135deg, #A46FB7, #C6808E); }
+  
+  .stat-hero-card {
+    border-radius: 20px; padding: 18px 16px; color: #FFF; display: flex; flex-direction: column; justify-content: space-between; min-height: 104px;
+    box-shadow: 0 8px 20px rgba(216, 180, 226, 0.25);
+  }
+  .hero-spend { background: linear-gradient(135deg, var(--primary-lilac), var(--primary-rose)); }
+  .hero-count { background: linear-gradient(135deg, #B583C7, #D898A4); }
+  
   .hero-top-row { display: flex; justify-content: space-between; align-items: center; }
   .hero-label { font-size: 11px; font-weight: 500; color: rgba(255, 255, 255, 0.9); }
   .hero-val { font-size: 22px; font-weight: 700; color: #FFF; font-family: 'Plus Jakarta Sans', sans-serif; margin-top: 4px; }
-  .stat-card { background: var(--card-bg); border-radius: 18px; padding: 14px 16px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.03); display: flex; flex-direction: column; gap: 2px; }
-  .stat-val { font-size: 20px; font-weight: 700; color: #9A5BAE; font-family: 'Plus Jakarta Sans', sans-serif; }
+  
+  .stat-card {
+    background: var(--card-bg); border-radius: 18px; padding: 14px 16px; border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); display: flex; flex-direction: column; gap: 2px;
+  }
+  .stat-val { font-size: 20px; font-weight: 700; color: var(--primary-lilac); font-family: 'Plus Jakarta Sans', sans-serif; }
   .stat-label { font-size: 11px; color: var(--text-sub); font-weight: 500; }
   .stat-sub { font-size: 10px; color: #A89FAE; margin-top: 2px; }
+  
+  .stat-wide-card {
+    background: var(--card-bg); border-radius: 18px; padding: 14px 16px; border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center;
+  }
+
   .breakdown-card { background: var(--card-bg); border-radius: 18px; padding: 18px 16px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
   .breakdown-title { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
   .breakdown-item { margin-bottom: 12px; }
   .breakdown-item:last-child { margin-bottom: 0; }
   .breakdown-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; color: var(--text-main); }
-  .breakdown-bar-bg { height: 7px; background: #F4EBF7; border-radius: 4px; overflow: hidden; }
+  .breakdown-bar-bg { height: 7px; background: var(--border-color); border-radius: 4px; overflow: hidden; }
   .breakdown-bar-fill { height: 100%; border-radius: 4px; }
 
   /* Modals */
@@ -165,7 +198,7 @@
   }
   .modal-overlay.show { display: flex; justify-content: center; align-items: center; opacity: 1; }
   .modal-content {
-    background: #FFFFFF; width: 100%; max-width: 412px; border-radius: 24px;
+    background: var(--card-bg); width: 100%; max-width: 412px; border-radius: 24px;
     padding: 24px 22px; transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     max-height: 85vh; overflow-y: auto; margin: auto; box-shadow: 0 16px 40px rgba(0,0,0,0.1);
   }
@@ -181,29 +214,48 @@
     font-size: 14px; font-family: inherit; color: var(--text-main); outline: none; transition: border-color 0.2s;
   }
   .form-input:focus { border-color: var(--primary-lilac); }
+  
   .suggestions-box {
-    position: absolute; top: 70px; left: 0; right: 0; background: #FFF; border-radius: 12px;
+    position: absolute; top: 70px; left: 0; right: 0; background: var(--card-bg); border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid var(--border-color); max-height: 180px; overflow-y: auto; z-index: 10; display: none;
   }
-  .suggestion-item { padding: 12px 14px; font-size: 13.5px; border-bottom: 1px solid #FAF7FA; cursor: pointer; }
+  .suggestion-item { padding: 12px 14px; font-size: 13.5px; border-bottom: 1px solid var(--bg-main); cursor: pointer; }
   .suggestion-item:last-child { border-bottom: none; }
   .suggestion-item:hover { background: #FAF5FC; color: #9A5BAE; font-weight: 500; }
+  
   .chips-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-  .chip { padding: 6px 12px; border-radius: 16px; background: #FAF7FA; border: 1px solid var(--border-color); font-size: 12px; color: var(--text-sub); cursor: pointer; transition: all 0.2s; }
+  .chip { padding: 6px 12px; border-radius: 16px; background: var(--bg-main); border: 1px solid var(--border-color); font-size: 12px; color: var(--text-sub); cursor: pointer; transition: all 0.2s; }
   .chip.active { background: #F4EBF7; border-color: var(--primary-lilac); color: #9A5BAE; font-weight: 600; }
-  .segment-control { display: flex; background: #FAF7FA; border-radius: 12px; padding: 4px; gap: 4px; }
+  
+  .segment-control { display: flex; background: var(--bg-main); border-radius: 12px; padding: 4px; gap: 4px; }
   .segment-btn { flex: 1; text-align: center; padding: 8px; border-radius: 8px; border: none; background: transparent; font-size: 13px; font-weight: 500; color: var(--text-sub); cursor: pointer; }
-  .segment-btn.active { background: #FFF; color: var(--text-main); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .segment-btn.active { background: var(--card-bg); color: var(--text-main); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  
   .stepper { display: flex; align-items: center; gap: 12px; }
-  .btn-step { width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid var(--border-color); background: #FFF; font-size: 18px; color: #9A5BAE; display: flex; justify-content: center; align-items: center; cursor: pointer; }
-  .stepper input { width: 60px; text-align: center; height: 36px; border-radius: 10px; border: 1.5px solid var(--border-color); font-size: 16px; font-weight: 600; }
+  .btn-step { width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid var(--border-color); background: var(--card-bg); font-size: 18px; color: var(--primary-lilac); display: flex; justify-content: center; align-items: center; cursor: pointer; }
+  .stepper input { width: 60px; text-align: center; height: 36px; border-radius: 10px; border: 1.5px solid var(--border-color); font-size: 16px; font-weight: 600; color: var(--text-main); }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  
   .btn-save {
     width: 100%; height: 50px; border-radius: 16px; border: none; margin-top: 10px;
     background: linear-gradient(135deg, var(--primary-lilac), var(--primary-rose)); color: #FFF; font-size: 16px; font-weight: 600; font-family: inherit;
     box-shadow: 0 4px 16px rgba(216, 180, 226, 0.5); cursor: pointer;
   }
   .btn-save:disabled { opacity: 0.7; cursor: not-allowed; }
+
+  /* Checkbox / View Details */
+  .checkbox-card {
+    display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px;
+    background: var(--bg-main); border: 1.5px solid var(--border-color); cursor: pointer;
+  }
+  .checkbox-card input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--primary-lilac); cursor: pointer; }
+  .checkbox-card span { font-size: 13px; font-weight: 600; color: var(--text-main); }
+  
+  .view-detail-card { background: var(--bg-main); border-radius: 16px; padding: 16px; border: 1px solid var(--border-color); margin-bottom: 14px; }
+  .view-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; }
+  .view-row:last-child { margin-bottom: 0; }
+  .view-label { color: var(--text-sub); }
+  .view-val { font-weight: 600; color: var(--text-main); }
 
   /* Scanner */
   #scanner-view { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 14px; }
@@ -223,7 +275,7 @@
 
   /* Login Overlay */
   .login-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg-main); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; }
-  .login-box { width: 100%; max-width: 340px; background: #FFF; border-radius: 28px; padding: 32px 24px; box-shadow: 0 12px 36px rgba(216, 180, 226, 0.25); border: 1px solid var(--border-color); text-align: center; }
+  .login-box { width: 100%; max-width: 340px; background: var(--card-bg); border-radius: 28px; padding: 32px 24px; box-shadow: 0 12px 36px rgba(216, 180, 226, 0.25); border: 1px solid var(--border-color); text-align: center; }
   .login-icon { width: 54px; height: 54px; border-radius: 16px; background: #F4EBF7; color: #9A5BAE; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; }
   .login-title { font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
   .login-sub { font-size: 12px; color: var(--text-sub); margin-bottom: 24px; }
@@ -250,6 +302,7 @@
 
 <div class="mobile-container" id="appContainer">
 
+  <!-- ================= TAB 1: LIBRARY / WISHLIST ================= -->
   <div class="screen active" id="libScreen">
     <header class="header">
       <div class="logo-group"><h1 class="logo-title">SparkleDex</h1></div>
@@ -286,7 +339,7 @@
       <div class="empty-state">กำลังโหลดข้อมูล...</div>
     </div>
 
-    <!-- เปลี่ยนเหลือ 5 รายการ/หน้า -->
+    <!-- แสดงทีละ 5 รายการ -->
     <div class="pagination-container" id="paginationBar">
       <button class="btn-page" id="btnPrevPage" onclick="changePage(-1)">
         <svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg> ก่อนหน้า
@@ -298,9 +351,12 @@
     </div>
   </div>
 
+  <!-- ================= TAB 2: DASHBOARD ANALYTICS (กู้กลับมาครบ 100%) ================= -->
   <div class="screen" id="dashScreen">
     <header class="header"><div class="logo-group"><h1 class="logo-title">Analytics</h1></div></header>
     <div class="dash-container">
+      
+      <!-- 1. Hero Symmetric Cards -->
       <div class="dash-grid-2">
         <div class="stat-hero-card hero-spend">
           <div class="hero-top-row"><span class="hero-label">ยอดสะสมค่าหนังสือ</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
@@ -311,13 +367,69 @@
           <div class="hero-val" id="dashTotalVols">0 <span style="font-size: 14px; font-weight: normal;">เล่ม</span></div>
         </div>
       </div>
+
+      <!-- 2. Grid แยกประเภทหนังสือ -->
+      <div class="dash-grid-2">
+        <div class="stat-card">
+          <span class="stat-label">มังงะ (Manga)</span>
+          <span class="stat-val" style="color: var(--tag-manga-txt);" id="dashMangaVols">0</span>
+          <span class="stat-sub" id="dashMangaRatio">0% ของทั้งหมด</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">นิยาย (Light Novel)</span>
+          <span class="stat-val" style="color: var(--tag-novel-txt);" id="dashNovelVols">0</span>
+          <span class="stat-sub" id="dashNovelRatio">0% ของทั้งหมด</span>
+        </div>
+      </div>
+
+      <!-- 3. Grid สถานะการอ่าน -->
+      <div class="dash-grid-2">
+        <div class="stat-card">
+          <span class="stat-label">อ่านไปแล้ว</span>
+          <span class="stat-val" style="color: var(--tag-read-txt);" id="dashTotalRead">0</span>
+          <span class="stat-sub">เล่ม</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">ดองไว้</span>
+          <span class="stat-val" style="color: var(--tag-unread-txt);" id="dashTotalUnread">0</span>
+          <span class="stat-sub">เล่ม</span>
+        </div>
+      </div>
+
+      <!-- 4. สรุปจำนวนเรื่อง -->
+      <div class="stat-wide-card">
+        <div>
+          <span class="stat-label" style="display:block;">จำนวนเรื่องทั้งหมด</span>
+          <span class="stat-val" id="dashTotalTitles">0</span>
+        </div>
+        <div style="text-align: right;">
+          <span class="stat-label" style="display:block;">จบสมบูรณ์แล้ว</span>
+          <span style="font-size: 14px; font-weight: 700; color: #73695F;" id="dashCompletedTitles">0 เรื่อง</span>
+        </div>
+      </div>
+
+      <!-- 5. จำนวนหนังสือแยกตามสำนักพิมพ์ -->
       <div class="breakdown-card">
-        <div class="breakdown-title"><span>จำนวนหนังสือแยกตามสำนักพิมพ์</span></div>
+        <div class="breakdown-title">
+          <span>จำนวนหนังสือแยกตามสำนักพิมพ์</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-lilac)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        </div>
         <div id="pubVolumeList"></div>
       </div>
+
+      <!-- 6. ยอดสะสมแยกตามสำนักพิมพ์ -->
+      <div class="breakdown-card">
+        <div class="breakdown-title">
+          <span>ยอดสะสมแยกตามสำนักพิมพ์</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-rose)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <div id="pubSpendList"></div>
+      </div>
+
     </div>
   </div>
 
+  <!-- Bottom Dock -->
   <nav class="bottom-dock">
     <button class="nav-tab active-tab" id="tabLib" onclick="switchTab('lib')">
       <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> <span>คลังหนังสือ</span>
@@ -327,19 +439,18 @@
     </button>
   </nav>
 
-  <!-- ================= MODAL: ADD NEW VOLUME ================= -->
+  <!-- ================= MODAL: ADD NEW VOLUME / WISHLIST ================= -->
   <div class="modal-overlay" id="addModal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">บันทึกเล่มใหม่</h2>
+        <h2 class="modal-title" id="addModalHeader">บันทึกเล่มใหม่</h2>
         <button class="btn-close" onclick="closeAddModal()"><svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
       </div>
 
       <form id="addForm" onsubmit="handleSave(event)">
         <input type="hidden" id="titleId" name="titleId">
-        <input type="hidden" id="wishlistRemoveId"> <!-- สำหรับเช็คตอนย้ายจาก Wishlist -->
+        <input type="hidden" id="wishlistRemoveId">
 
-        <!-- ตัวเลือกว่าจะบันทึกลงที่ไหน -->
         <div class="form-group">
           <label class="form-label">ปลายทางจัดเก็บ</label>
           <div class="segment-control">
@@ -421,6 +532,76 @@
     </div>
   </div>
 
+  <!-- ================= MODAL: VIEW DETAILS ================= -->
+  <div class="modal-overlay" id="viewModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="viewTitleName">รายละเอียดหนังสือ</h2>
+        <button class="btn-close" onclick="closeViewModal()">
+          <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="view-detail-card">
+        <div class="view-row"><span class="view-label">รหัสเรื่อง:</span><span class="view-val" id="viewTitleId">-</span></div>
+        <div class="view-row"><span class="view-label">ประเภท:</span><span class="view-val" id="viewType">-</span></div>
+        <div class="view-row"><span class="view-label">สำนักพิมพ์:</span><span class="view-val" id="viewPublisher">-</span></div>
+        <div class="view-row"><span class="view-label">มีสะสมถึงเล่ม:</span><span class="view-val" id="viewLatestVol">-</span></div>
+        <div class="view-row"><span class="view-label">อ่านจบถึงเล่ม:</span><span class="view-val" id="viewReadUpTo">-</span></div>
+        <div class="view-row"><span class="view-label">สถานะเรื่อง:</span><span class="view-val" id="viewStatus">-</span></div>
+      </div>
+      <button type="button" class="btn-save" id="btnOpenEditFromView">แก้ไขข้อมูลเรื่องนี้</button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDIT TITLE ================= -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">จัดการข้อมูลเรื่อง</h2>
+        <button class="btn-close" onclick="closeEditModal()">
+          <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <form id="editForm" onsubmit="handleUpdateTitle(event)">
+        <input type="hidden" id="editTitleId">
+        <div class="form-group">
+          <label class="form-label">ชื่อเรื่อง</label>
+          <input type="text" id="editTitleName" class="form-input" required>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">ประเภท</label>
+            <select id="editType" class="form-input">
+              <option value="มังงะ">มังงะ</option>
+              <option value="นิยาย">นิยาย</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">สำนักพิมพ์</label>
+            <input type="text" id="editPublisher" class="form-input" required>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">มีถึงเล่มที่</label>
+            <input type="number" id="editLatestVol" class="form-input" min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">อ่านถึงเล่มที่</label>
+            <input type="number" id="editReadUpTo" class="form-input" min="0">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="checkbox-card">
+            <input type="checkbox" id="editIsComplete">
+            <span>สถานะ: เรื่องนี้จบสมบูรณ์แล้ว (Complete)</span>
+          </label>
+        </div>
+        <button type="submit" class="btn-save" id="btnEditSubmit">บันทึกการแก้ไข</button>
+      </form>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -428,12 +609,12 @@
   const AUTH_CREDENTIALS = { user: "sparkle", pass: "lunafreya#6913" };
   
   let dbTitles = [];
-  // ดึงรายการ Wishlist จาก localStorage
   let wishlistItems = JSON.parse(localStorage.getItem('sparkle_wishlist') || '[]');
   let currentMode = 'library'; 
   let currentFilteredList = [];
   let currentPage = 1;
-  const PAGE_SIZE = 5; // เปลี่ยนเป็นแสดง 5 รายการต่อหน้าแล้วครับ
+  const PAGE_SIZE = 5; 
+  let currentlySelectedTitle = null;
   let html5QrScanner = null;
 
   window.addEventListener('DOMContentLoaded', () => checkAuth());
@@ -474,6 +655,59 @@
       onFilterChange();
     } catch (error) {
       document.getElementById('libraryCardsContainer').innerHTML = '<div class="empty-state">โหลดข้อมูลล้มเหลวครับ</div>';
+    }
+  }
+
+  async function fetchDashboard() {
+    try {
+      const res = await fetch(API_URL + "?action=getDashboard", { method: "GET", redirect: "follow" });
+      const data = await res.json();
+      
+      const totalVols = data.totalVolumes || 0;
+      document.getElementById('dashTotalPrice').innerText = '฿' + Number(data.totalPrice || 0).toLocaleString();
+      document.getElementById('dashTotalVols').innerHTML = `${totalVols} <span style="font-size: 14px; font-weight: normal;">เล่ม</span>`;
+      document.getElementById('dashMangaVols').innerText = data.mangaVolCount || 0;
+      document.getElementById('dashNovelVols').innerText = data.novelVolCount || 0;
+      document.getElementById('dashMangaRatio').innerText = totalVols > 0 ? `${Math.round(((data.mangaVolCount || 0) / totalVols) * 100)}% ของทั้งหมด` : '0%';
+      document.getElementById('dashNovelRatio').innerText = totalVols > 0 ? `${Math.round(((data.novelVolCount || 0) / totalVols) * 100)}% ของทั้งหมด` : '0%';
+      document.getElementById('dashTotalRead').innerText = data.totalRead || 0;
+      document.getElementById('dashTotalUnread').innerText = data.totalUnread || 0;
+      
+      // กู้คืนตัวแปร Total Titles และ Completed Titles
+      document.getElementById('dashTotalTitles').innerText = `${data.totalTitles || 0} เรื่อง`;
+      document.getElementById('dashCompletedTitles').innerText = `${data.totalCompletedTitles || 0} เรื่อง`;
+
+      // 5. จำนวนหนังสือแยกตามสำนักพิมพ์
+      const pubVolContainer = document.getElementById('pubVolumeList');
+      pubVolContainer.innerHTML = '';
+      const maxVol = (data.publishers && data.publishers.length > 0) ? data.publishers[0].volumeCount : 1;
+      (data.publishers || []).forEach(p => {
+        const pct = Math.max(8, (p.volumeCount / maxVol) * 100);
+        const item = document.createElement('div');
+        item.className = 'breakdown-item';
+        item.innerHTML = `
+          <div class="breakdown-header"><span>${p.publisher}</span><span><strong>${p.volumeCount}</strong> เล่ม</span></div>
+          <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" style="width: ${pct}%; background: linear-gradient(90deg, var(--primary-lilac), var(--primary-rose));"></div></div>
+        `;
+        pubVolContainer.appendChild(item);
+      });
+
+      // 6. ยอดสะสมแยกตามสำนักพิมพ์ (กู้กลับมา)
+      const pubSpendContainer = document.getElementById('pubSpendList');
+      pubSpendContainer.innerHTML = '';
+      const maxSpend = Math.max(...(data.publishers || []).map(p => p.totalSpent), 1);
+      (data.publishers || []).forEach(p => {
+        const pct = Math.max(8, (p.totalSpent / maxSpend) * 100);
+        const item = document.createElement('div');
+        item.className = 'breakdown-item';
+        item.innerHTML = `
+          <div class="breakdown-header"><span>${p.publisher}</span><span>฿${Number(p.totalSpent).toLocaleString()}</span></div>
+          <div class="breakdown-bar-bg"><div class="breakdown-bar-fill" style="width: ${pct}%; background: linear-gradient(90deg, var(--primary-rose), var(--primary-lilac));"></div></div>
+        `;
+        pubSpendContainer.appendChild(item);
+      });
+    } catch (e) {
+      console.error(e);
     }
   }
 
@@ -559,30 +793,30 @@
         <div class="progress-track"><div class="progress-fill" style="width: ${pct}%"></div></div>
         <span class="progress-text">${read}/${latest} (${pct}%)</span>
       </div>`;
+    
+    card.onclick = (e) => {
+      if (!e.target.closest('.btn-quick-plus')) { openViewModal(t); }
+    };
     return card;
   }
 
-  // ระบบย้าย Wishlist เข้าคลัง
   function moveToLibrary(e, tempId) {
     e.stopPropagation();
     const item = wishlistItems.find(w => w.tempId === tempId);
     if (!item) return;
-    
-    // เปิด Modal ให้กรอกราคา/วันที่ แต่ Lock ปลายทางเป็น Library
     openAddModal();
     document.getElementById('titleName').value = item.titleName;
     setType(item.type);
     document.getElementById('publisher').value = item.publisher;
     document.getElementById('volNo').value = item.latestVol || 1;
-    
     setDestination('library');
-    document.getElementById('wishlistRemoveId').value = tempId; // ส่ง tempId ไปเพื่อสั่งลบหลังบันทึกเสร็จ
+    document.getElementById('wishlistRemoveId').value = tempId; 
   }
 
   async function handleQuickAdd(e, titleId) {
     e.stopPropagation();
     const item = dbTitles.find(t => t.titleId === titleId);
-    if (!item || !confirm(`เพิ่มเล่ม ${(parseInt(item.latestVol) || 0) + 1} ทันที?`)) return;
+    if (!item || !confirm(`เพิ่ม "${item.titleName}" เล่ม ${(parseInt(item.latestVol) || 0) + 1} ทันที?`)) return;
     const btn = e.target; btn.disabled = true; btn.innerText = '...';
 
     const payload = {
@@ -602,6 +836,33 @@
 
   function openAddModal() { document.getElementById('addModal').classList.add('show'); setDestination(currentMode); }
   function closeAddModal() { document.getElementById('addModal').classList.remove('show'); document.getElementById('addForm').reset(); document.getElementById('wishlistRemoveId').value = ''; clearChips(); }
+  
+  function openViewModal(item) {
+    currentlySelectedTitle = item;
+    document.getElementById('viewTitleName').innerText = item.titleName;
+    document.getElementById('viewTitleId').innerText = item.titleId || '-';
+    document.getElementById('viewType').innerText = item.type;
+    document.getElementById('viewPublisher').innerText = item.publisher;
+    document.getElementById('viewLatestVol').innerText = `เล่ม ${item.latestVol || 0}`;
+    document.getElementById('viewReadUpTo').innerText = `เล่ม ${item.readUpTo || 0}`;
+    document.getElementById('viewStatus').innerText = item.status || 'ยังไม่จบ';
+    document.getElementById('btnOpenEditFromView').onclick = () => { closeViewModal(); openEditModal(item); };
+    document.getElementById('viewModal').classList.add('show');
+  }
+  function closeViewModal() { document.getElementById('viewModal').classList.remove('show'); }
+
+  function openEditModal(item) {
+    document.getElementById('editTitleId').value = item.titleId;
+    document.getElementById('editTitleName').value = item.titleName;
+    document.getElementById('editType').value = item.type;
+    document.getElementById('editPublisher').value = item.publisher;
+    document.getElementById('editLatestVol').value = item.latestVol;
+    document.getElementById('editReadUpTo').value = item.readUpTo;
+    document.getElementById('editIsComplete').checked = (item.status === 'จบแล้ว');
+    document.getElementById('editModal').classList.add('show');
+  }
+  function closeEditModal() { document.getElementById('editModal').classList.remove('show'); }
+
   function setType(type) { document.getElementById('typeVal').value = type; document.getElementById('btnTypeManga').classList.toggle('active', type === 'มังงะ'); document.getElementById('btnTypeNovel').classList.toggle('active', type === 'นิยาย'); }
   function setStatus(status) { document.getElementById('readStatusVal').value = status; document.getElementById('btnStatusUnread').classList.toggle('active', status === 'ยังไม่อ่าน'); document.getElementById('btnStatusRead').classList.toggle('active', status === 'อ่านแล้ว'); }
   function setPublisher(p, elem) { document.getElementById('publisher').value = p; clearChips(); if(elem) elem.classList.add('active'); }
@@ -653,7 +914,6 @@
       const data = await res.json();
       alert(data.message);
       
-      // ถ้ามาจากปุ่ม "ซื้อ" ใน Wishlist ให้ลบรายการเดิมทิ้ง
       const removeId = document.getElementById('wishlistRemoveId').value;
       if (removeId) {
         wishlistItems = wishlistItems.filter(w => w.tempId !== removeId);
@@ -664,11 +924,26 @@
     } catch(err) { alert("เกิดข้อผิดพลาด"); } finally { btn.disabled = false; btn.innerText = 'บันทึก'; }
   }
 
+  async function handleUpdateTitle(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btnEditSubmit'); btn.disabled = true; btn.innerText = 'กำลังอัปเดต...';
+    const updateData = {
+      action: 'updateTitle', titleId: document.getElementById('editTitleId').value, titleName: document.getElementById('editTitleName').value,
+      type: document.getElementById('editType').value, publisher: document.getElementById('editPublisher').value,
+      latestVol: document.getElementById('editLatestVol').value, readUpTo: document.getElementById('editReadUpTo').value,
+      status: document.getElementById('editIsComplete').checked ? 'จบแล้ว' : 'ยังไม่จบ'
+    };
+    try {
+      const response = await fetch(API_URL, { method: "POST", body: JSON.stringify(updateData) });
+      const result = await response.json(); alert(result.message); closeEditModal(); await fetchAllData();
+    } catch (error) { alert("เกิดข้อผิดพลาดในการอัปเดต"); } finally { btn.disabled = false; btn.innerText = 'บันทึกการแก้ไข'; }
+  }
+
   function switchTab(target) {
     ['libScreen', 'dashScreen'].forEach(s => document.getElementById(s).classList.remove('active'));
     ['tabLib', 'tabDash'].forEach(t => document.getElementById(t).classList.remove('active-tab'));
     if(target === 'lib') { document.getElementById('libScreen').classList.add('active'); document.getElementById('tabLib').classList.add('active-tab'); onFilterChange(); } 
-    else { document.getElementById('dashScreen').classList.add('active'); document.getElementById('tabDash').classList.add('active-tab'); }
+    else { document.getElementById('dashScreen').classList.add('active'); document.getElementById('tabDash').classList.add('active-tab'); fetchDashboard(); }
   }
 
   function openBarcodeScanner() {
