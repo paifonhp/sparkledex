@@ -21,7 +21,7 @@
   .mobile-container {
     width: 100%;
     max-width: 412px;
-    background-color: #FAF7F5;
+    background-color: #FAF6F0;
     min-height: 100vh;
     position: relative;
     box-shadow: 0 0 40px rgba(0,0,0,0.08);
@@ -31,7 +31,6 @@
   }
 
   /* Themes */
-  .theme-lilac { --bg-main: #FAF7F5; --primary: #A267B3; --primary-light: #F4EBF7; --border: #F0EAF2; --text-main: #3D3543; --accent: #D87080; }
   .theme-oat { --bg-main: #FAF6F0; --primary: #D97736; --primary-light: #FBF0E6; --border: #EFE8DE; --text-main: #3C3630; --accent: #C88A35; }
   .theme-mint { --bg-main: #F4F8F6; --primary: #4EA385; --primary-light: #E6F4F1; --border: #E2EFEA; --text-main: #2D3D37; --accent: #E2795B; }
 
@@ -42,17 +41,13 @@
   .header { padding: 22px 20px 14px 20px; display: flex; justify-content: space-between; align-items: center; }
   .logo-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
   
-  .theme-lilac .logo-title { background: linear-gradient(135deg, #A267B3, #D87080); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .theme-oat .logo-title { background: linear-gradient(135deg, #D97736, #C88A35); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .theme-mint .logo-title { background: linear-gradient(135deg, #4EA385, #E2795B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
   .btn-header-action {
     width: 38px; height: 38px; border-radius: 12px; border: none; display: flex; align-items: center; justify-content: center; color: #FFF; cursor: pointer;
+    background: linear-gradient(135deg, #E8A87C, #E2795B); box-shadow: 0 4px 12px rgba(232, 168, 124, 0.45);
   }
-  .theme-lilac .btn-header-action { background: linear-gradient(135deg, #D8B4E2, #F4ACB7); box-shadow: 0 4px 12px rgba(216, 180, 226, 0.45); }
-  .theme-oat .btn-header-action { background: linear-gradient(135deg, #E8A87C, #E2795B); box-shadow: 0 4px 12px rgba(232, 168, 124, 0.45); }
-
-  .section-label { font-size: 13px; font-weight: 600; color: #8C8294; margin: 0 20px 10px 20px; }
 
   /* Search & Filter Bar */
   .filter-section { padding: 0 20px 14px 20px; display: flex; flex-direction: column; gap: 10px; }
@@ -60,12 +55,10 @@
   .search-input-wrap svg { position: absolute; left: 14px; width: 18px; height: 18px; stroke: #8C8294; fill: none; stroke-width: 2; }
   
   .search-bar {
-    width: 100%; height: 44px; border-radius: 14px; border: 1.5px solid #F0EAF2; background: #FFF;
-    padding: 0 14px 0 40px; font-size: 14px; font-family: inherit; color: #3D3543; outline: none; transition: border-color 0.2s;
+    width: 100%; height: 44px; border-radius: 14px; border: 1.5px solid #EFE8DE; background: #FFF;
+    padding: 0 14px 0 40px; font-size: 14px; font-family: inherit; color: #3C3630; outline: none; transition: border-color 0.2s;
   }
-  .theme-oat .search-bar { border-color: #EFE8DE; color: #3C3630; }
-  .search-bar:focus { border-color: #A267B3; }
-  .theme-oat .search-bar:focus { border-color: #D97736; }
+  .search-bar:focus { border-color: #D97736; }
 
   .filter-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; -ms-overflow-style: none; scrollbar-width: none; }
   .filter-pills::-webkit-scrollbar { display: none; }
@@ -78,11 +71,10 @@
   .book-list { padding: 0 20px; display: flex; flex-direction: column; gap: 6px; }
   
   .book-card-mini {
-    background: #FFF; border-radius: 14px; padding: 11px 14px; border: 1px solid #F0EAF2;
+    background: #FFF; border-radius: 14px; padding: 11px 14px; border: 1px solid #EFE8DE;
     display: flex; justify-content: space-between; align-items: center; cursor: pointer;
     transition: all 0.15s ease;
   }
-  .theme-oat .book-card-mini { border-color: #EFE8DE; }
   .book-card-mini:active { transform: scale(0.985); background: #FAF7F2; }
 
   .mini-title-wrap {
@@ -95,20 +87,18 @@
   .dot-novel { background-color: #4EA385; }
 
   .mini-name {
-    font-size: 13.5px; font-weight: 500; color: #3D3543;
+    font-size: 13.5px; font-weight: 500; color: #3C3630;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
-  .theme-oat .mini-name { color: #3C3630; }
 
   .mini-vol-badge {
-    background: #F4EBF7; padding: 4px 10px; border-radius: 8px;
-    font-size: 12px; font-weight: 600; color: #A267B3;
+    background: #FBF0E6; padding: 4px 10px; border-radius: 8px;
+    font-size: 12px; font-weight: 600; color: #D97736;
     font-family: 'Plus Jakarta Sans', sans-serif; flex-shrink: 0; white-space: nowrap;
   }
-  .theme-oat .mini-vol-badge { background: #FBF0E6; color: #D97736; }
   .mini-vol-badge.is-completed { background: #EAE6DF; color: #73695F; }
 
-  .empty-state { text-align: center; color: #8C8294; font-size: 13px; padding: 30px 0; }
+  .empty-state { text-align: center; color: #8C7F72; font-size: 13px; padding: 30px 0; }
 
   /* Pagination Bar */
   .pagination-container {
@@ -171,46 +161,46 @@
   }
   .modal-overlay.show .modal-content { transform: scale(1); }
   .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .modal-title { font-size: 18px; font-weight: 600; color: #3D3543; }
-  .btn-close { background: none; border: none; cursor: pointer; color: #8C8294; display: flex; align-items: center; }
+  .modal-title { font-size: 18px; font-weight: 600; color: #3C3630; }
+  .btn-close { background: none; border: none; cursor: pointer; color: #8C7F72; display: flex; align-items: center; }
 
   .form-group { margin-bottom: 16px; position: relative; }
-  .form-label { display: block; font-size: 12px; font-weight: 600; color: #8C8294; margin-bottom: 6px; }
+  .form-label { display: block; font-size: 12px; font-weight: 600; color: #8C7F72; margin-bottom: 6px; }
   .form-input {
-    width: 100%; height: 44px; border-radius: 12px; border: 1.5px solid #F0EAF2; padding: 0 14px;
-    font-size: 14px; font-family: inherit; color: #3D3543; outline: none; transition: border-color 0.2s;
+    width: 100%; height: 44px; border-radius: 12px; border: 1.5px solid #EFE8DE; padding: 0 14px;
+    font-size: 14px; font-family: inherit; color: #3C3630; outline: none; transition: border-color 0.2s;
   }
-  .form-input:focus { border-color: #A267B3; }
+  .form-input:focus { border-color: #D97736; }
 
   .suggestions-box {
     position: absolute; top: 70px; left: 0; right: 0; background: #FFF; border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid #F0EAF2; max-height: 180px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid #EFE8DE; max-height: 180px;
     overflow-y: auto; z-index: 10; display: none;
   }
-  .suggestion-item { padding: 12px 14px; font-size: 14px; border-bottom: 1px solid #F9F7FA; cursor: pointer; }
+  .suggestion-item { padding: 12px 14px; font-size: 14px; border-bottom: 1px solid #FAF6F0; cursor: pointer; }
   .suggestion-item:last-child { border-bottom: none; }
-  .suggestion-item:hover { background: #FAF5FC; color: #A267B3; font-weight: 500; }
+  .suggestion-item:hover { background: #FAF0E6; color: #D97736; font-weight: 500; }
 
   .chips-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
   .chip {
-    padding: 6px 12px; border-radius: 16px; background: #F9F7FA; border: 1px solid #F0EAF2;
-    font-size: 12px; color: #8C8294; cursor: pointer; transition: all 0.2s;
+    padding: 6px 12px; border-radius: 16px; background: #FAF6F0; border: 1px solid #EFE8DE;
+    font-size: 12px; color: #8C7F72; cursor: pointer; transition: all 0.2s;
   }
-  .chip.active { background: #F4EBF7; border-color: #D8B4E2; color: #A267B3; font-weight: 600; }
+  .chip.active { background: #FBF0E6; border-color: #E8A87C; color: #D97736; font-weight: 600; }
 
-  .segment-control { display: flex; background: #F9F7FA; border-radius: 12px; padding: 4px; gap: 4px; }
+  .segment-control { display: flex; background: #FAF6F0; border-radius: 12px; padding: 4px; gap: 4px; }
   .segment-btn {
     flex: 1; text-align: center; padding: 8px; border-radius: 8px; border: none; background: transparent;
-    font-size: 13px; font-weight: 500; color: #8C8294; cursor: pointer;
+    font-size: 13px; font-weight: 500; color: #8C7F72; cursor: pointer;
   }
-  .segment-btn.active { background: #FFF; color: #3D3543; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .segment-btn.active { background: #FFF; color: #3C3630; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 
   .stepper { display: flex; align-items: center; gap: 12px; }
   .btn-step {
-    width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #F0EAF2; background: #FFF;
-    font-size: 18px; color: #A267B3; display: flex; justify-content: center; align-items: center; cursor: pointer;
+    width: 36px; height: 36px; border-radius: 10px; border: 1.5px solid #EFE8DE; background: #FFF;
+    font-size: 18px; color: #D97736; display: flex; justify-content: center; align-items: center; cursor: pointer;
   }
-  .stepper input { width: 60px; text-align: center; height: 36px; border-radius: 10px; border: 1.5px solid #F0EAF2; font-size: 16px; font-weight: 600; }
+  .stepper input { width: 60px; text-align: center; height: 36px; border-radius: 10px; border: 1.5px solid #EFE8DE; font-size: 16px; font-weight: 600; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
   .checkbox-card {
@@ -222,8 +212,8 @@
 
   .btn-save {
     width: 100%; height: 50px; border-radius: 16px; border: none; margin-top: 10px;
-    background: linear-gradient(135deg, #A267B3, #D87080); color: #FFF; font-size: 16px; font-weight: 600; font-family: inherit;
-    box-shadow: 0 4px 16px rgba(162, 103, 179, 0.3); cursor: pointer;
+    background: linear-gradient(135deg, #D97736, #E2795B); color: #FFF; font-size: 16px; font-weight: 600; font-family: inherit;
+    box-shadow: 0 4px 16px rgba(217, 119, 54, 0.3); cursor: pointer;
   }
   .btn-save:disabled { opacity: 0.7; cursor: not-allowed; }
 
@@ -234,45 +224,44 @@
   .view-label { color: #8C7F72; }
   .view-val { font-weight: 600; color: #3C3630; }
 
-  /* Bottom Dock */
+  /* Bottom Dock (2 แท็บ) */
   .bottom-dock {
     position: absolute; bottom: 0; left: 0; right: 0; height: 72px;
     background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px);
-    border-top: 1px solid #F0EAF2; display: flex; justify-content: space-around; align-items: center; z-index: 90;
+    border-top: 1px solid #EFE8DE; display: flex; justify-content: space-around; align-items: center; z-index: 90;
   }
   .nav-tab {
     display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer;
-    padding: 6px 14px; border-radius: 14px; border: none; background: transparent; color: #9E95A6;
+    padding: 6px 24px; border-radius: 14px; border: none; background: transparent; color: #9E95A6;
   }
   .nav-tab svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
   .nav-tab span { font-size: 11px; font-weight: 500; font-family: inherit; }
-  .nav-tab.active-lilac { color: #A267B3; }
   .nav-tab.active-oat { color: #D97736; }
   .nav-tab.active-mint { color: #4EA385; }
 
   /* ================= LOGIN OVERLAY ================= */
   .login-overlay {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: #FAF7F5; z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px;
+    background: #FAF6F0; z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px;
   }
   .login-box {
     width: 100%; max-width: 340px; background: #FFF; border-radius: 28px; padding: 32px 24px;
-    box-shadow: 0 12px 36px rgba(162, 103, 179, 0.12); border: 1px solid #F0EAF2; text-align: center;
+    box-shadow: 0 12px 36px rgba(217, 119, 54, 0.12); border: 1px solid #EFE8DE; text-align: center;
   }
   .login-icon {
-    width: 54px; height: 54px; border-radius: 16px; background: #F4EBF7; color: #A267B3;
+    width: 54px; height: 54px; border-radius: 16px; background: #FBF0E6; color: #D97736;
     display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;
   }
-  .login-title { font-size: 20px; font-weight: 700; color: #3D3543; margin-bottom: 6px; }
-  .login-sub { font-size: 12px; color: #8C8294; margin-bottom: 24px; }
+  .login-title { font-size: 20px; font-weight: 700; color: #3C3630; margin-bottom: 6px; }
+  .login-sub { font-size: 12px; color: #8C7F72; margin-bottom: 24px; }
   .login-input {
-    width: 100%; height: 46px; border-radius: 14px; border: 1.5px solid #F0EAF2; padding: 0 14px;
-    font-size: 14px; font-family: inherit; color: #3D3543; outline: none; margin-bottom: 12px; text-align: center;
+    width: 100%; height: 46px; border-radius: 14px; border: 1.5px solid #EFE8DE; padding: 0 14px;
+    font-size: 14px; font-family: inherit; color: #3C3630; outline: none; margin-bottom: 12px; text-align: center;
   }
-  .login-input:focus { border-color: #A267B3; }
+  .login-input:focus { border-color: #D97736; }
   .btn-login {
-    width: 100%; height: 48px; border-radius: 14px; border: none; background: linear-gradient(135deg, #A267B3, #D87080);
-    color: #FFF; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 14px rgba(162, 103, 179, 0.3);
+    width: 100%; height: 48px; border-radius: 14px; border: none; background: linear-gradient(135deg, #D97736, #E2795B);
+    color: #FFF; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 14px rgba(217, 119, 54, 0.3);
   }
 </style>
 </head>
@@ -296,26 +285,11 @@
 
 <div class="mobile-container" id="appContainer">
 
-  <!-- ================= TAB 1: QUICK ADD (Lilac) ================= -->
-  <div class="screen theme-lilac active" id="quickScreen">
+  <!-- ================= TAB 1: LIBRARY / คลังหนังสือ (Warm Oat) ================= -->
+  <div class="screen theme-oat active" id="libScreen">
     <header class="header">
-      <div class="logo-group"><h1 class="logo-title">SparkleDex</h1></div>
-      <button class="btn-header-action" onclick="openAddModal()">
-        <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-      </button>
-    </header>
-
-    <div class="section-label">รายการที่อัปเดตล่าสุด (4 เล่ม)</div>
-    <div class="book-list" id="recentCardsContainer">
-      <div class="empty-state">กำลังโหลดข้อมูล...</div>
-    </div>
-  </div>
-
-  <!-- ================= TAB 2: LIBRARY (Warm Oat) ================= -->
-  <div class="screen theme-oat" id="libScreen">
-    <header class="header">
-      <div class="logo-group"><h1 class="logo-title">Library</h1></div>
-      <button class="btn-header-action" onclick="openAddModal()">
+      <div class="logo-group"><h1 class="logo-title">คลังหนังสือ</h1></div>
+      <button class="btn-header-action" onclick="openAddModal()" title="เพิ่มเล่มใหม่">
         <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
       </button>
     </header>
@@ -348,7 +322,7 @@
       <div class="empty-state">กำลังจัดเรียงคลังหนังสือ...</div>
     </div>
 
-    <!-- Pagination Controls (4 รายการต่อหน้า) -->
+    <!-- Pagination Controls (10 รายการต่อหน้า) -->
     <div class="pagination-container" id="paginationBar">
       <button class="btn-page" id="btnPrevPage" onclick="changePage(-1)">
         <svg width="14" height="14" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -362,7 +336,7 @@
     </div>
   </div>
 
-  <!-- ================= TAB 3: DASHBOARD ANALYTICS (Mint) ================= -->
+  <!-- ================= TAB 2: DASHBOARD ANALYTICS (Mint) ================= -->
   <div class="screen theme-mint" id="dashScreen">
     <header class="header">
       <div class="logo-group"><h1 class="logo-title">Analytics</h1></div>
@@ -450,13 +424,9 @@
     </div>
   </div>
 
-  <!-- ================= BOTTOM NAVIGATION ================= -->
+  <!-- ================= BOTTOM NAVIGATION (2 แท็บ) ================= -->
   <nav class="bottom-dock">
-    <button class="nav-tab active-lilac" id="tabQuick" onclick="switchTab('quick')">
-      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-      <span>บันทึกด่วน</span>
-    </button>
-    <button class="nav-tab" id="tabLib" onclick="switchTab('lib')">
+    <button class="nav-tab active-oat" id="tabLib" onclick="switchTab('lib')">
       <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
       <span>คลังหนังสือ</span>
     </button>
@@ -562,7 +532,7 @@
         <div class="view-row"><span class="view-label">สถานะเรื่อง:</span><span class="view-val" id="viewStatus">-</span></div>
       </div>
 
-      <button type="button" class="btn-save" id="btnOpenEditFromView" style="background: linear-gradient(135deg, #D97736, #E2795B);">แก้ไขข้อมูลเรื่องนี้</button>
+      <button type="button" class="btn-save" id="btnOpenEditFromView">แก้ไขข้อมูลเรื่องนี้</button>
     </div>
   </div>
 
@@ -616,7 +586,7 @@
           </label>
         </div>
 
-        <button type="submit" class="btn-save" id="btnEditSubmit" style="background: linear-gradient(135deg, #D97736, #E2795B);">บันทึกการแก้ไข</button>
+        <button type="submit" class="btn-save" id="btnEditSubmit">บันทึกการแก้ไข</button>
       </form>
     </div>
   </div>
@@ -624,16 +594,16 @@
 </div>
 
 <script>
-  // ⚠️ URL API Apps Script
+  // ⚠️ URL API Apps Script[cite: 1]
   const API_URL = "https://script.google.com/macros/s/AKfycbzC7I97wis3MRFahrjkOoCM-CL6mMuAQG9eiJVJ2ZS_ZrcElq0lBjNCa6UZpWAh-DqD/exec";
   
-  // ตั้งค่ารหัสผ่านเข้าใช้งาน
+  // ตั้งค่ารหัสผ่านเข้าใช้งาน[cite: 1]
   const AUTH_CREDENTIALS = { user: "sparkle", pass: "lunafreya#6913" };
   
   let dbTitles = [];
   let currentFilteredList = [];
   let currentPage = 1;
-  const PAGE_SIZE = 4; // แสดงหน้าละ 4 รายการ
+  const PAGE_SIZE = 10; // แสดง 10 รายการต่อหน้า
   let currentlySelectedTitle = null;
 
   window.addEventListener('DOMContentLoaded', () => {
@@ -646,7 +616,6 @@
     const expiry = localStorage.getItem("sparkle_auth_expiry");
     const now = Date.now();
 
-    // ตรวจสอบว่าเคยล็อกอิน และเวลาปัจจุบันยังไม่เกิน 12 ชม.
     if (isAuth === "true" && expiry && now < parseInt(expiry, 10)) {
       document.getElementById("loginScreen").style.display = "none";
       initApp();
@@ -688,12 +657,11 @@
       const response = await fetch(API_URL + "?action=getTitles", { method: "GET", redirect: "follow" });
       dbTitles = await response.json();
       
-      renderRecentList();
       populatePublisherFilter();
       onFilterChange();
     } catch (error) {
       console.error("Fetch error:", error);
-      document.getElementById('recentCardsContainer').innerHTML = '<div class="empty-state">โหลดข้อมูลไม่สำเร็จ ลองรีเฟรชอีกครั้งครับ</div>';
+      document.getElementById('libraryCardsContainer').innerHTML = '<div class="empty-state">โหลดข้อมูลไม่สำเร็จ ลองรีเฟรชอีกครั้งครับ</div>';
     }
   }
 
@@ -764,18 +732,6 @@
     }
   }
 
-  // แสดง 4 รายการล่าสุดในแถบบันทึกด่วน
-  function renderRecentList() {
-    const container = document.getElementById('recentCardsContainer');
-    container.innerHTML = '';
-    const recent = dbTitles.slice(-4).reverse();
-    if (recent.length === 0) {
-      container.innerHTML = '<div class="empty-state">ยังไม่มีรายการหนังสือ กดปุ่ม + เพื่อเพิ่มเล่มแรก</div>';
-      return;
-    }
-    recent.forEach(t => container.appendChild(createCompactBookCard(t)));
-  }
-
   function populatePublisherFilter() {
     const select = document.getElementById('filterPublisher');
     const current = select.value;
@@ -790,7 +746,7 @@
     if (publishers.includes(current)) select.value = current;
   }
 
-  // ================= FILTER & PAGINATION (4 รายการ/หน้า) =================
+  // ================= FILTER & PAGINATION (10 รายการ/หน้า) =================
   function onFilterChange() {
     const query = document.getElementById('libSearchInput').value.trim().toLowerCase();
     const typeFilter = document.getElementById('filterType').value;
@@ -863,24 +819,18 @@
     return card;
   }
 
-  // ================= TAB NAVIGATION =================
+  // ================= TAB NAVIGATION (2 แท็บ) =================
   function switchTab(target) {
-    const qS = document.getElementById('quickScreen');
     const lS = document.getElementById('libScreen');
     const dS = document.getElementById('dashScreen');
-    const tQ = document.getElementById('tabQuick');
     const tL = document.getElementById('tabLib');
     const tD = document.getElementById('tabDash');
     const app = document.getElementById('appContainer');
 
-    [qS, lS, dS].forEach(s => s.classList.remove('active'));
-    [tQ, tL, tD].forEach(t => t.className = 'nav-tab');
+    [lS, dS].forEach(s => s.classList.remove('active'));
+    [tL, tD].forEach(t => t.className = 'nav-tab');
 
-    if(target === 'quick') {
-      qS.classList.add('active');
-      tQ.className = 'nav-tab active-lilac';
-      app.style.backgroundColor = '#FAF7F5';
-    } else if(target === 'lib') {
+    if(target === 'lib') {
       lS.classList.add('active');
       tL.className = 'nav-tab active-oat';
       app.style.backgroundColor = '#FAF6F0';
